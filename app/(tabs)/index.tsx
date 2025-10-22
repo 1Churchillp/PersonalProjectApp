@@ -6,6 +6,7 @@ import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Link } from 'expo-router';
+import CustomPressable from '../../components/CustomPressable';
 
 export default function HomeScreen() {
   return (
@@ -18,9 +19,15 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
+        <ThemedText type="title">Welcome to Personal Project!</ThemedText>
         <HelloWave />
       </ThemedView>
+      <Link href="/project" style={{marginHorizontal: 'auto'}}
+      asChild>
+        <CustomPressable>
+           Property
+        </CustomPressable>
+      </Link>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
         <ThemedText>
@@ -37,10 +44,10 @@ export default function HomeScreen() {
         </ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
+        {/* <Link href="/modal">
+          <Link.Trigger> */}
             <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
+          {/* </Link.Trigger>
           <Link.Preview />
           <Link.Menu>
             <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
@@ -58,7 +65,7 @@ export default function HomeScreen() {
               />
             </Link.Menu>
           </Link.Menu>
-        </Link>
+        </Link> */}
 
         <ThemedText>
           {`Tap the Explore tab to learn more about what's included in this starter app.`}
