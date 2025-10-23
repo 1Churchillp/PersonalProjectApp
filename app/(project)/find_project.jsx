@@ -1,24 +1,24 @@
-import {Button, View, Text, StyleSheet, SafeAreaView} from 'react-native'
-import PropertyList from './PropertyList'
-import PropertyView from './PropertyView-old'
+import { StyleSheet, Text } from 'react-native'
+import ProjectList from './ProjectList'
+// import ProjectView from './ProjectView-old'
 import { useState } from 'react'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
-const find_property = () => {
+const find_project = () => {
     const [showView, setShowView] = useState(false)
 
     
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.title}>
-                Find a Property
+                Find a Project
             </Text>
-            <PropertyList/>
-            {/* <PropertyView/> */}
+            <ProjectList/>
         </SafeAreaView>
     )
 }
 
-export default find_property
+export default find_project
 
 const styles = StyleSheet.create({
     container: {

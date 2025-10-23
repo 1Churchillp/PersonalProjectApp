@@ -1,32 +1,32 @@
-import { useEffect, useState } from "react";
-import { FlatList, Text, View, StatusBar, StyleSheet, ActivityIndicator, RefreshControl, TouchableOpacity } from "react-native";
-import { useSQLiteContext } from "expo-sqlite";
 import { useRouter } from "expo-router";
-import { Property } from "../../components/Property"
+import { useSQLiteContext } from "expo-sqlite";
+import { useEffect, useState } from "react";
+import { ActivityIndicator, FlatList, RefreshControl, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+// import { Project } from "../../components/Project"
 
 const Item = ({item, onLongPress, backgroundColor, textColor}) => (
   <TouchableOpacity onLongPress={onLongPress} style={[styles.item, {backgroundColor}]}>
     <Text style={[styles.title, {color: textColor}]}>{item.name}</Text>
-    <Text>address: {item.address}, id: {item.id}</Text>
+    <Text>address: {item.due_date}, id: {item.id}</Text>
     <Text>comments: {item.comments}</Text>
   </TouchableOpacity>
 );
 
-const PropertyList = () => {
+const ProjectList = () => {
     const router = useRouter();
 
     const [selectedId, setSelectedId] = useState();
 
-    const [Properties, setProperties] = useState([]);
+    const [Projects, setProjects] = useState([]);
     const [isLoading, setIsLoading]= useState(false);
     const db = useSQLiteContext();
 
-    const loadProperties = async () => {
+    const loadProjects = async () => {
         try {
             setIsLoading(true);
-            const results = await db.getAllAsync(` SELECT * FROM properties
+            const results = await db.getAllAsync(` SELECT * FROM projects
                 ORDER BY id DESC`);
-            setProperties(results);
+            setProjects(results);
         } catch (error) {
             console.error("Database error", error);           
         } finally {
@@ -35,7 +35,7 @@ const PropertyList = () => {
     };
 
     useEffect(() => {
-        loadProperties();
+        loadProjects();
     }, []);
 
   const renderItem = ({item}) => {
@@ -46,13 +46,8 @@ const PropertyList = () => {
       <Item
         item={item}
         onLongPress={() => {
-            // alert("This should navigate to PropertyView")
-            //const dataToSend = JSON.stringify(item)
-            // router.navigate({pathname:'/(property)/PropertyView'})
-            // router.navigate({pathname:'/(property)/PropertyView', params: {...item }})
-            router.navigate({pathname:'/(property)/PropertyView', params: {...item }})
+            router.navigate({pathname:'/(project)/ProjectView', params: {...item }})
         }}
-        // onLongPress={() => setSelectedId(item.id)}
         backgroundColor={backgroundColor}
         textColor={color}
       >
@@ -66,24 +61,24 @@ const PropertyList = () => {
 
     return(
         <View>
-            <Text style={styles.note}>Press and hold to select property</Text>
+            <Text style={styles.note}>Press and hold to select project</Text>
             <TouchableOpacity>
                 <FlatList
-                    data={Properties}
+                    data={Projects}
                     renderItem={renderItem} 
                     refreshControl={
-                        <RefreshControl refreshing={isLoading} onRefresh={loadProperties} timeColor ="#007AFE" />
+                        <RefreshControl refreshing={isLoading} onRefresh={loadProjects} timeColor ="#007AFE" />
                     }
                     keyExtractor={(item) => item.id.toString()}
                     
-                    ListEmptyComponent={<Text>No properties found</Text>}
+                    ListEmptyComponent={<Text>No projects found</Text>}
                 />
             </TouchableOpacity>
         </View>
     );
 }
 
-export default PropertyList;
+export default ProjectList;
 
 const styles = StyleSheet.create({
   container: {

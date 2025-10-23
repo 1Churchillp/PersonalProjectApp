@@ -6,8 +6,7 @@ import { Alert, Button, StyleSheet, TextInput, View } from 'react-native';
 const AddProjectForm =() => {
   const [form, setForm] = useState({
       name: '',
-      address: '',
-      contact: '', //not inorporated into table
+      due_date: '',
       comments: ''
   });
 
@@ -16,20 +15,19 @@ const AddProjectForm =() => {
     const handleSubmit = async () => {
         try {
             //validate form data
-            if(!form.name || !form.address || !form.contact|| !form.comments){
+            if(!form.name || !form.comments){
                 throw new Error('All fields are requried');
             }
         
             await db.runAsync(
-                'INSERT INTO properties (name, address, comments) VALUES (?,?,?)',
-                [form.name, form.address, form.comments]
+                'INSERT INTO projects (name, due_date, comments) VALUES (?,?,?)',
+                [form.name, form.due_date, form.comments]
             );
 
             Alert.alert('Success', 'Project added successfully!');
             setForm({
                 name: '',
-                address: '',
-                contact: '',
+                due_date: '',
                 comments: ''
             });
         } catch(error){
@@ -49,15 +47,9 @@ const AddProjectForm =() => {
         />
         <TextInput
             style={styles.input}
-            placeholder="Address"
-            value={form.address}
-            onChangeText={(text)=> setForm({ ...form, address: text})}
-        />
-        <TextInput
-            style={styles.input}
-            placeholder="Contact"
-            value={form.contact}
-            onChangeText={(text)=> setForm({ ...form, contact: text})}
+            placeholder="Due Date"
+            value={form.due_date}
+            onChangeText={(text)=> setForm({ ...form, due_date: text})}
         />
         <TextInput
             style={styles.input}
@@ -68,8 +60,6 @@ const AddProjectForm =() => {
         <Button 
             title="Add Project" 
             onPress={handleSubmit}> 
-            {/* // style={styles.addButton}> */}
-            {/* <Text style={styles.addButtonText}>Add Project</Text> */}
         </Button>
     </View>
   );

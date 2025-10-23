@@ -6,7 +6,7 @@ import CustomPressable from '../../components/CustomPressable'
 const project = () => {
   return (
     <View style={{marginTop: 100}}>
-      <Text style={styles.title}>Properties</Text>
+      <Text style={styles.title}>Projects</Text>
         <Link href="/add_project" style={{marginHorizontal: 'auto'}}
         asChild>
             <CustomPressable>

@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { HelloWave } from '@/components/hello-wave';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
@@ -25,10 +25,16 @@ export default function HomeScreen() {
       <Link href="/project" style={{marginHorizontal: 'auto'}}
       asChild>
         <CustomPressable>
-           Property
+           Project
         </CustomPressable>
       </Link>
-      <ThemedView style={styles.stepContainer}>
+      <Link href="/todo_list" style={{marginHorizontal: 'auto'}}
+      asChild>
+        <CustomPressable>
+           To Do List
+        </CustomPressable>
+      </Link>
+      {/* <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
         <ThemedText>
           Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
@@ -42,11 +48,11 @@ export default function HomeScreen() {
           </ThemedText>{' '}
           to open developer tools.
         </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
+      </ThemedView> */}
+      {/* <ThemedView style={styles.stepContainer}> */}
         {/* <Link href="/modal">
           <Link.Trigger> */}
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
+            {/* <ThemedText type="subtitle">Step 2: Explore</ThemedText> */}
           {/* </Link.Trigger>
           <Link.Preview />
           <Link.Menu>
@@ -67,7 +73,7 @@ export default function HomeScreen() {
           </Link.Menu>
         </Link> */}
 
-        <ThemedText>
+        {/* <ThemedText>
           {`Tap the Explore tab to learn more about what's included in this starter app.`}
         </ThemedText>
       </ThemedView>
@@ -80,7 +86,7 @@ export default function HomeScreen() {
           <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
           <ThemedText type="defaultSemiBold">app-example</ThemedText>.
         </ThemedText>
-      </ThemedView>
+      </ThemedView> */}
     </ParallaxScrollView>
   );
 }
