@@ -7,7 +7,7 @@ import { ActivityIndicator, FlatList, RefreshControl, StatusBar, StyleSheet, Tex
 const Item = ({item, onLongPress, backgroundColor, textColor}) => (
   <TouchableOpacity onLongPress={onLongPress} style={[styles.item, {backgroundColor}]}>
     <Text style={[styles.title, {color: textColor}]}>{item.name}</Text>
-    <Text>address: {item.due_date}, id: {item.id}</Text>
+    <Text>due date: {item.due_date}, id: {item.id}</Text>
     <Text>comments: {item.comments}</Text>
   </TouchableOpacity>
 );

@@ -1,29 +1,29 @@
-import { useEffect, useState } from "react";
-import { FlatList, Text, View, StatusBar, StyleSheet, ActivityIndicator, RefreshControl, TouchableOpacity } from "react-native";
-import { useSQLiteContext } from "expo-sqlite";
 import { useRouter } from "expo-router";
+import { useSQLiteContext } from "expo-sqlite";
+import { useEffect, useState } from "react";
+import { ActivityIndicator, FlatList, RefreshControl, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const Item = ({item, onLongPress, backgroundColor, textColor}) => (
   <TouchableOpacity onLongPress={onLongPress} style={[styles.item, {backgroundColor}]}>
     <Text style={[styles.title, {color: textColor}]}>{item.name}</Text>
-    <Text>address: {item.address}, id: {item.id}</Text>
+    <Text>due date: {item.due_date}, id: {item.id}</Text>
     <Text>comments: {item.comments}</Text>
   </TouchableOpacity>
 );
 
-const PropertyListDelete = () => {
+const ProjectListDelete = () => {
     const router = useRouter()
 
     const [selectedId, setSelectedId] = useState()
-    const [Properties, setProperties] = useState([])
+    const [Projects, setProjects] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const db = useSQLiteContext()
 
-    const loadProperties = async () => {
+    const loadProjects = async () => {
         try {
             setIsLoading(true)
-            const results = await db.getAllAsync(` SELECT * FROM properties ORDER BY id DESC`)
-            setProperties(results)
+            const results = await db.getAllAsync(` SELECT * FROM projects ORDER BY id DESC`)
+            setProjects(results)
         } catch (error){
             console.error("Database error", error)
         } finally {
@@ -32,7 +32,7 @@ const PropertyListDelete = () => {
     }
 
     useEffect(() => {
-        loadProperties()
+        loadProjects()
     }, [])
 
     const renderItem = ({item}) => {
@@ -42,7 +42,7 @@ const PropertyListDelete = () => {
             <Item
                 item={item}
                 onLongPress={()=>{
-                    router.navigate({pathname:'/(property)/PropertyDelete', params: {...item}})
+                    router.navigate({pathname:'/(project)/ProjectDelete', params: {...item}})
                 }}
                 backgroundColor={backgroundColor}
                 color={color}
@@ -59,17 +59,17 @@ const PropertyListDelete = () => {
         <View>
             <Text
                 style={styles.note}>
-                    Press and hold to select a property
+                    Press and hold to select a project
             </Text>
             <TouchableOpacity>
                 <FlatList
-                    data={Properties}
+                    data={Projects}
                     renderItem={renderItem}
                     refreshControl={
-                        <RefreshControl refreshing={isLoading} onRefresh={loadProperties} timeColor ="#007AFE" />
+                        <RefreshControl refreshing={isLoading} onRefresh={loadProjects} timeColor ="#007AFE" />
                     }
                     keyExtractor={(item) => item.id.toString()}
-                    ListEmptyComponent={<Text>No properties found</Text>}
+                    ListEmptyComponent={<Text>No projects found</Text>}
                     />
             </TouchableOpacity>
         </View>
@@ -77,7 +77,7 @@ const PropertyListDelete = () => {
 
 }
 
-export default PropertyListDelete;
+export default ProjectListDelete;
 
 const styles = StyleSheet.create({
   container: {

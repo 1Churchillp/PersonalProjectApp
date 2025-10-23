@@ -1,19 +1,20 @@
-import { Text, SafeAreaView, StyleSheet } from "react-native"
-import PropertyListDelete from "./PropertyListDelete"
+import { StyleSheet, Text } from "react-native"
+import { SafeAreaView } from 'react-native-safe-area-context'
+import ProjectListDelete from "./ProjectListDelete"
 
-const delete_property = () => {
+const delete_project = () => {
 
     return(
         <SafeAreaView style={styles.container}>
             <Text style={styles.title}>
-                Delete Property
+                Delete Project
             </Text>
-            <PropertyListDelete/>
+            <ProjectListDelete/>
         </SafeAreaView>
     )
 }
 
-export default delete_property
+export default delete_project
 
 const styles = StyleSheet.create({
     container: {

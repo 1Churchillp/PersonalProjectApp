@@ -1,32 +1,32 @@
-import { View, Text, StyleSheet,TouchableOpacity, TextInput, Alert, _View } from "react-native"
-import React, { useState } from "react"
-import { router, useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSQLiteContext } from "expo-sqlite";
+import { useState } from "react";
+import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 
-const DisplayGroup = ({property, onChangeText, isDeleteMode}) => {
+const DisplayGroup = ({project, onChangeText, isDeleteMode}) => {
         if(isDeleteMode){ 
         return(
             <View>
                 <Text style={styles.title}>Delete Mode</Text>
                 <TextInput
                     title="Name:"
-                    value={property.name} 
+                    value={project.name} 
                     style={styles.display}
                     placeholder="You are in delete mode"/>
                 <TextInput
-                    title="Address:"
-                    value={property.address} 
+                    title="Due Date:"
+                    value={project.due_date} 
                     style={styles.display}
                     placeholder="You are in delete mode"/>
                 <TextInput
                     title="Comments:"
-                    value={property.comments} 
+                    value={project.comments} 
                     style={styles.display}
                     placeholder="You are in delete mode"/>
                 <TextInput
                     title="Id:"
-                    value={property.id} 
+                    value={project.id} 
                     style={styles.display}
                     placeholder="You are in delete mode"/>
             </View>
@@ -40,13 +40,13 @@ const DisplayGroup = ({property, onChangeText, isDeleteMode}) => {
     }
 }
 
-const PropertyDelete = () =>{
-    const {id, name, address, comments} = useLocalSearchParams()
+const ProjectDelete = () =>{
+    const {id, name, due_date, comments} = useLocalSearchParams()
     const [deleteMode, setDeleteMode] = useState(true)
     const [form, setForm] = useState({
         id: id,
         name: name,
-        address: address,
+        due_date: due_date,
         comments: comments
     })
     const router = useRouter()
@@ -55,38 +55,38 @@ const PropertyDelete = () =>{
 
     // const onChangeTextArray = [
     //     (text) => setForm({...form, name: text}),
-    //     (text) => setForm({...form, address: text}),
+    //     (text) => setForm({...form, due_date: text}),
     //     (text) => setForm({...form, comments: text}),
     // ]
     
     const handleDelete = async ()=>{
-        // alert("This should handle property delete")
+        // alert("This should handle project delete")
         
         try{
             // validate form data
-            // if(!form.name || !form.address || !form.comments){
+            // if(!form.name || !form.due_date || !form.comments){
             //     throw new Error('All fields are required')
             // }
             
             const newName = form.name
-            const newAddress = form.address
+            const newDueDate = form.due_date
             const newComments = form.comments
 
             await db.runAsync(                
-                `DELETE FROM properties WHERE id = ?`,
+                `DELETE FROM projects WHERE id = ?`,
                 [Number(id)]
             )
 
-            Alert.alert('Success', 'Property deleted successfully!')
+            Alert.alert('Success', 'Project deleted successfully!')
             setForm({
                 name: newName,
-                address: newAddress,
+                due_date: newDueDate,
                 comments: newComments,
                 // id: keyId
             })
         } catch(error){
             console.error(error);
-            Alert.alert('Error', error.message || 'An error occurred while deleteting the property.');
+            Alert.alert('Error', error.message || 'An error occurred while deleteting the project.');
         }
 
         setDeleteMode(false)
@@ -96,7 +96,7 @@ const PropertyDelete = () =>{
     const ButtonGroup =()=>{
             return(
                 <View>
-                    <Text style={styles.title}>Are you sure you want to delete this property?</Text>
+                    <Text style={styles.title}>Are you sure you want to delete this project?</Text>
     
                     <View style={styles.buttonGroup}>
         
@@ -119,7 +119,7 @@ const PropertyDelete = () =>{
     return (
         <View style={styles.container}>
             <DisplayGroup
-                property={form}
+                project={form}
                 // onChangeText={(text)=> setForm({ ...form, name: text})}
                 // onChangeText={onChangeTextArray}
                 isDeleteMode={deleteMode}
@@ -130,7 +130,7 @@ const PropertyDelete = () =>{
 
 }
 
-export default PropertyDelete;
+export default ProjectDelete;
 
 const styles = StyleSheet.create({
     container: {

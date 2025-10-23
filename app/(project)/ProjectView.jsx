@@ -1,10 +1,10 @@
-import { View, Text, StyleSheet,TouchableOpacity, TextInput, Alert } from "react-native"
-import React, { useState } from "react"
 import { useLocalSearchParams } from 'expo-router';
 import { useSQLiteContext } from "expo-sqlite";
+import { useState } from "react";
+import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 
-const DisplayGroup = ({property, onChangeText, isEditMode}) => {
+const DisplayGroup = ({project, onChangeText, isEditMode}) => {
     if (isEditMode){
         return(  
                 <View>
@@ -12,25 +12,25 @@ const DisplayGroup = ({property, onChangeText, isEditMode}) => {
                     <TextInput
                         title="Name:"
                         style={styles.editMode}
-                        value={property.name}
+                        value={project.name}
                         onChangeText={onChangeText[0]}
                     />
                     <TextInput
-                        title="Address:"
+                        title="DueDate:"
                         style={styles.editMode}
-                        value={property.address}
+                        value={project.due_date}
                         onChangeText={onChangeText[1]}
                     />
                     <TextInput
                         title="Comments:"
                         style={styles.editMode}
-                        value={property.comments}
+                        value={project.comments}
                         onChangeText={onChangeText[2]}
                     />
                     <TextInput
                         title="Id:"
                         style={styles.display}
-                        value={property.id}
+                        value={project.id}
                         editable={false}            
                     />
                 </View>
@@ -41,25 +41,25 @@ const DisplayGroup = ({property, onChangeText, isEditMode}) => {
                 <Text style={styles.title}>View Mode Property</Text>
                 <TextInput
                     title="Name:"
-                    value={property.name} 
+                    value={project.name} 
                     style={styles.display}
                     editable={false}
                     placeholder="You are in view mode"/>
                 <TextInput
-                    title="Address:"
-                    value={property.address} 
+                    title="DueDate:"
+                    value={project.due_date} 
                     style={styles.display}
                     editable={false}
                     placeholder="You are in view mode"/>
                 <TextInput
                     title="Comments:"
-                    value={property.comments} 
+                    value={project.comments} 
                     style={styles.display}
                     editable={false}
                     placeholder="You are in view mode"/>
                 <TextInput
                     title="Id:"
-                    value={property.id} 
+                    value={project.id} 
                     style={styles.display}
                     editable={false}
                     placeholder="You are in view mode"/>
@@ -69,12 +69,12 @@ const DisplayGroup = ({property, onChangeText, isEditMode}) => {
 }
 
 const PropertyView = () =>{
-    const {id, name, address, comments} = useLocalSearchParams()
+    const {id, name, due_date, comments} = useLocalSearchParams()
     const [editMode, setEditMode] = useState(false)
     const [form, setForm] = useState({
         id: id,
         name: name,
-        address: address,
+        due_date: due_date,
         comments: comments
     })
 
@@ -82,38 +82,38 @@ const PropertyView = () =>{
 
     const onChangeTextArray = [
         (text) => setForm({...form, name: text}),
-        (text) => setForm({...form, address: text}),
+        (text) => setForm({...form, due_date: text}),
         (text) => setForm({...form, comments: text}),
     ]
     
     const handleSave = async ()=>{
-        // alert("This should handle property update")
+        // alert("This should handle project update")
         
         try{
             // validate form data
-            if(!form.name || !form.address || !form.comments){
+            if(!form.name || !form.due_date || !form.comments){
                 throw new Error('All fields are required')
             }
             
             const newName = form.name
-            const newAddress = form.address
+            const newDueDate = form.due_date
             const newComments = form.comments
 
             await db.runAsync(                
-                `UPDATE properties SET name =?, address=?, comments =? WHERE id = ?`,
-                [newName, newAddress, newComments, Number(id)]
+                `UPDATE projects SET name =?, due_date=?, comments =? WHERE id = ?`,
+                [newName, newDueDate, newComments, Number(id)]
             )
 
             Alert.alert('Success', 'Property editted successfully!')
             setForm({
                 name: newName,
-                address: newAddress,
+                due_date: newDueDate,
                 comments: newComments,
                 // id: keyId
             })
         } catch(error){
             console.error(error);
-            Alert.alert('Error', error.message || 'An error occuuued while editting the property.');
+            Alert.alert('Error', error.message || 'An error occuuued while editting the project.');
         }
 
         setEditMode(false)
@@ -152,7 +152,7 @@ const PropertyView = () =>{
     return (
         <View style={styles.container}>
             <DisplayGroup
-                property={form}
+                project={form}
                 // onChangeText={(text)=> setForm({ ...form, name: text})}
                 onChangeText={onChangeTextArray}
                 isEditMode={editMode}
