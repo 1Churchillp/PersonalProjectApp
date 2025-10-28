@@ -2,7 +2,6 @@ import { useRouter } from "expo-router";
 import { useSQLiteContext } from "expo-sqlite";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, RefreshControl, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-// import { Project } from "../../components/Project"
 
 const Item = ({item, onLongPress, backgroundColor, textColor}) => (
   <TouchableOpacity onLongPress={onLongPress} style={[styles.item, {backgroundColor}]}>
@@ -12,7 +11,7 @@ const Item = ({item, onLongPress, backgroundColor, textColor}) => (
   </TouchableOpacity>
 );
 
-const ProjectList = () => {
+const TodoList = () => {
     const router = useRouter();
 
     const [selectedId, setSelectedId] = useState();
@@ -25,7 +24,7 @@ const ProjectList = () => {
         try {
             setIsLoading(true);
             const results = await db.getAllAsync(` SELECT * FROM projects
-                ORDER BY id DESC`);
+                ORDER BY due_date DESC`);
             setProjects(results);
         } catch (error) {
             console.error("Database error", error);           
@@ -61,7 +60,7 @@ const ProjectList = () => {
 
     return(
         <View>
-            <Text style={styles.note}>Press and hold to select project</Text>
+            <Text style={styles.note}>Press and hold to select To Do</Text>
             <TouchableOpacity>
                 <FlatList
                     data={Projects}
