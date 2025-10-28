@@ -77,7 +77,7 @@ const TodoList = () => {
     );
 }
 
-export default ProjectList;
+export default TodoList;
 
 const styles = StyleSheet.create({
   container: {

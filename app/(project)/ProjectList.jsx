@@ -8,6 +8,7 @@ const Item = ({item, onLongPress, backgroundColor, textColor}) => (
   <TouchableOpacity onLongPress={onLongPress} style={[styles.item, {backgroundColor}]}>
     <Text style={[styles.title, {color: textColor}]}>{item.name}</Text>
     <Text>due date: {item.due_date}, id: {item.id}</Text>
+    <Text>status: {item.status}</Text>
     <Text>comments: {item.comments}</Text>
   </TouchableOpacity>
 );
