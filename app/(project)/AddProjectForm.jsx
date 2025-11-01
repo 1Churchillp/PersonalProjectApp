@@ -2,6 +2,8 @@ import { useSQLiteContext } from 'expo-sqlite';
 import { useState } from "react";
 import { Alert, Button, StyleSheet, TextInput, View } from 'react-native';
 
+import DateTimePicker from '@react-native-community/datetimepicker';
+
 
 const AddProjectForm =() => {
   const [form, setForm] = useState({
@@ -9,6 +11,8 @@ const AddProjectForm =() => {
       due_date: '',
       comments: ''
   });
+
+
 
     const db= useSQLiteContext();
 
@@ -20,8 +24,8 @@ const AddProjectForm =() => {
             }
         
             await db.runAsync(
-                'INSERT INTO projects (name, due_date, comments) VALUES (?,?,?)',
-                [form.name, form.due_date, form.comments]
+                'INSERT INTO projects (name, due_date, comments, status) VALUES (?,?,?,?)',
+                [form.name, form.due_date, form.comments, 'active']
             );
 
             Alert.alert('Success', 'Project added successfully!');
