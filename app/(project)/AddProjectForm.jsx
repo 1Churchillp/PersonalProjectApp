@@ -6,7 +6,6 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 const AddProjectForm =() => {
-    const date = '2/13/25'
   const [form, setForm] = useState({
       name: '',
       due_date: '',
