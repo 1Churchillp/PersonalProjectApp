@@ -1,7 +1,7 @@
 import { StyleSheet, Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import AddProjectForm from './AddProjectForm'
-
+// test note
 const add_project = () => {
     return (
         <SafeAreaView style={styles.container}>
