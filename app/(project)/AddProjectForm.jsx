@@ -1,18 +1,42 @@
 import { useSQLiteContext } from 'expo-sqlite';
-import { useState } from "react";
-import { Alert, Button, StyleSheet, TextInput, View } from 'react-native';
+import { useEffect, useState } from "react";
+import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 const AddProjectForm =() => {
+
+  
+//   useEffect(() => {
+//     // console.log('The count has changed to:', count);
+//   }, [form]); 
+
+  const [date, setDate] = useState(new Date());
+  const [showPicker, setShowPicker] = useState(true);
   const [form, setForm] = useState({
       name: '',
-      due_date: '',
+      due_date: date.toLocaleDateString(),
       comments: ''
   });
+    const onChange = (event, selectedDate) => {
+        const currentDate = selectedDate || date;
+        setShowPicker(false); // Hide picker on iOS after selection
+        setDate(currentDate);
+        setForm({ ...form, due_date: currentDate.toLocaleDateString()})
+        
+        // setForm(prevState => ({
+        //     form: {
+        //         ...prevState.form,
+        //         due_date: selectedDate.toLocaleDateString()
+        //     },
+        // }));
 
+    };
 
+    const showDatePicker = () =>{ 
+        setShowPicker(true)
+    };
 
     const db= useSQLiteContext();
 
@@ -49,12 +73,26 @@ const AddProjectForm =() => {
             value={form.name}
             onChangeText={(text)=> setForm({ ...form, name: text})}
         />
-        <TextInput
+        < Button onPress={showDatePicker} title="Show Date Picker"/>
+        <Text style={{ marginTop: 20 }}>Selected Date: {date.toLocaleDateString()} </Text> 
+        
+
+      {showPicker && (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          mode="date" // Can be 'date', 'time', or 'datetime'
+          display="default" // On Android, 'default' or 'spinner'. On iOS, 'default' or 'spinner'
+          onChange={onChange}
+        />
+      )}
+
+        {/* <TextInput
             style={styles.input}
             placeholder="Due Date"
             value={form.due_date}
-            onChangeText={(text)=> setForm({ ...form, due_date: text})}
-        />
+            onChangeText={(date)=> setForm({ ...form, due_date: date.toLocaleDateString()})}
+        /> */}
         <TextInput
             style={styles.input}
             placeholder="Comments"
