@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
+import DatePressable from '../../components/DatePressable'
+
 
 
 const AddProjectForm =() => {
@@ -73,8 +75,11 @@ const AddProjectForm =() => {
             value={form.name}
             onChangeText={(text)=> setForm({ ...form, name: text})}
         />
-        < Button onPress={showDatePicker} title="Show Date Picker"/>
-        <Text style={{ marginTop: 20 }}>Selected Date: {date.toLocaleDateString()} </Text> 
+        < Button onPress={showDatePicker} title="Change Due Date" />
+        <DatePressable date={date.toLocaleDateString()}>
+            Due Date: 
+        </DatePressable>
+        {/* <Text style={{ marginTop: 20 }}>Selected Date: {date.toLocaleDateString()} </Text>  */}
         
 
       {showPicker && (

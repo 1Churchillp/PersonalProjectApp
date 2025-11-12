@@ -20,6 +20,7 @@
       return (
         <Pressable style={getPressableStyle} onPress={onPress} {...props}>
           {typeof children === 'string' ? <Text style={getTextStyle()}>{children}</Text> : children}
+          {typeof date === 'string' ? <Text style={getTextStyle()}>{date}</Text> : date}
         </Pressable>
       );
     };
