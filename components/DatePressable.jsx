@@ -3,7 +3,7 @@
     import { Pressable, Text, StyleSheet } from 'react-native';
     import { globalPressableStyles } from '../styles/globalStyles';
 
-    const CustomPressable = ({ children, title='',date='', style={}, textStyle='', onPress='', ...props }) => {
+    const DatePressable = ({ children, title='',date='', style={}, textStyle='', onPress='', ...props }) => {
       const getPressableStyle = ({ pressed }) => {
         const baseStyle = globalPressableStyles.basePressable;
         const pressedStyle = pressed ? globalPressableStyles.pressedState : {};
@@ -25,4 +25,4 @@
       );
     };
 
-    export default CustomPressable;
+    export default DatePressable;

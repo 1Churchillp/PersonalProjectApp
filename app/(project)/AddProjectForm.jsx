@@ -3,17 +3,13 @@ import { useEffect, useState } from "react";
 import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
-import DatePressable from '../../components/DatePressable'
 import DateDisplay from '../../components/DateDisplay'
+import DatePressable from '../../components/DatePressable';
+import CustomPressable from '../../components/CustomPressable';
 
 
 
 const AddProjectForm =() => {
-
-  
-//   useEffect(() => {
-//     // console.log('The count has changed to:', count);
-//   }, [form]); 
 
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
@@ -27,14 +23,6 @@ const AddProjectForm =() => {
         setShowPicker(false); // Hide picker on iOS after selection
         setDate(currentDate);
         setForm({ ...form, due_date: currentDate.toLocaleDateString()})
-        
-        // setForm(prevState => ({
-        //     form: {
-        //         ...prevState.form,
-        //         due_date: selectedDate.toLocaleDateString()
-        //     },
-        // }));
-
     };
 
     const showDatePicker = () =>{ 
@@ -76,55 +64,34 @@ const AddProjectForm =() => {
             value={form.name}
             onChangeText={(text)=> setForm({ ...form, name: text})}
         />
-        < Button onPress={showDatePicker} title="Change Due Date" />
+        <View style={styles.sideContainer}>
+          {showPicker ? (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              mode="date" // Can be 'date', 'time', or 'datetime'
+              display="default" // On Android, 'default' or 'spinner'. On iOS, 'default' or 'spinner'
+              onChange={onChange}
+            />
+            ):(
+            <DateDisplay 
+              onPress={showDatePicker}
+              date={date.toLocaleDateString()}>
+                Due Date: 
+            </DateDisplay>
+          )}
+          < Button onPress={showDatePicker} title="Tap to Change Due Date" />
+      </View>
 
-    {/* {myDate ? (
-        <p>The date is: {myDate.toLocaleDateString()}</p>
-    ) : (
-        <p>No date provided.</p>
-    )}  */}
-        {showPicker ? (
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={date}
-          mode="date" // Can be 'date', 'time', or 'datetime'
-          display="default" // On Android, 'default' or 'spinner'. On iOS, 'default' or 'spinner'
-          onChange={onChange}
-        />
-      ):(
-        <DateDisplay date={date.toLocaleDateString()}>
-            Due Date: 
-        </DateDisplay>
-      )}
-        {/* <Text style={{ marginTop: 20 }}>Selected Date: {date.toLocaleDateString()} </Text>  */}
-        
-
-      {/* {showPicker && (
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={date}
-          mode="date" // Can be 'date', 'time', or 'datetime'
-          display="default" // On Android, 'default' or 'spinner'. On iOS, 'default' or 'spinner'
-          onChange={onChange}
-        />
-      )} */}
-
-        {/* <TextInput
-            style={styles.input}
-            placeholder="Due Date"
-            value={form.due_date}
-            onChangeText={(date)=> setForm({ ...form, due_date: date.toLocaleDateString()})}
-        /> */}
         <TextInput
             style={styles.input}
             placeholder="Comments"
             value={form.comments}
             onChangeText={(text)=> setForm({ ...form, comments: text})}
         />
-        <Button 
-            title="Add Project" 
-            onPress={handleSubmit}> 
-        </Button>
+        <CustomPressable onPress={handleSubmit}> 
+          Add Project 
+        </CustomPressable>
     </View>
   );
 }
@@ -149,6 +116,13 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         paddingHorizontal: 10,
     },
+    sideContainer: {
+        flexDirection: 'row', // Arranges children horizontally
+        justifyContent: 'space-around', // Distributes space between items
+        alignItems: 'center', // Aligns items vertically in the center
+        padding: 10,
+      },
+
   addButton: {
     backgroundColor: 'pink',
     borderRadius: 5,
