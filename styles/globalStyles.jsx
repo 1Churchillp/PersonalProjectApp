@@ -59,4 +59,11 @@ export const globalPressableStyles = StyleSheet.create({
         textAlign: 'center',
         padding: 4,
     },
+})
+
+export const globalTextStyles = StyleSheet.create({
+    textStyle: {
+        color: 'black',
+        fontSize: 14,
+    }
 });

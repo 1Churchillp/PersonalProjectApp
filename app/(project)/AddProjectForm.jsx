@@ -4,6 +4,7 @@ import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
 import DatePressable from '../../components/DatePressable'
+import DateDisplay from '../../components/DateDisplay'
 
 
 
@@ -15,7 +16,7 @@ const AddProjectForm =() => {
 //   }, [form]); 
 
   const [date, setDate] = useState(new Date());
-  const [showPicker, setShowPicker] = useState(true);
+  const [showPicker, setShowPicker] = useState(false);
   const [form, setForm] = useState({
       name: '',
       due_date: date.toLocaleDateString(),
@@ -76,13 +77,13 @@ const AddProjectForm =() => {
             onChangeText={(text)=> setForm({ ...form, name: text})}
         />
         < Button onPress={showDatePicker} title="Change Due Date" />
-        <DatePressable date={date.toLocaleDateString()}>
-            Due Date: 
-        </DatePressable>
-        {/* <Text style={{ marginTop: 20 }}>Selected Date: {date.toLocaleDateString()} </Text>  */}
-        
 
-      {showPicker && (
+    {/* {myDate ? (
+        <p>The date is: {myDate.toLocaleDateString()}</p>
+    ) : (
+        <p>No date provided.</p>
+    )}  */}
+        {showPicker ? (
         <DateTimePicker
           testID="dateTimePicker"
           value={date}
@@ -90,7 +91,23 @@ const AddProjectForm =() => {
           display="default" // On Android, 'default' or 'spinner'. On iOS, 'default' or 'spinner'
           onChange={onChange}
         />
+      ):(
+        <DateDisplay date={date.toLocaleDateString()}>
+            Due Date: 
+        </DateDisplay>
       )}
+        {/* <Text style={{ marginTop: 20 }}>Selected Date: {date.toLocaleDateString()} </Text>  */}
+        
+
+      {/* {showPicker && (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          mode="date" // Can be 'date', 'time', or 'datetime'
+          display="default" // On Android, 'default' or 'spinner'. On iOS, 'default' or 'spinner'
+          onChange={onChange}
+        />
+      )} */}
 
         {/* <TextInput
             style={styles.input}
