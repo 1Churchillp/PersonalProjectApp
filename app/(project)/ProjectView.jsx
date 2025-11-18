@@ -8,7 +8,7 @@ const DisplayGroup = ({project, onChangeText, isEditMode}) => {
     if (isEditMode){
         return(  
                 <View>
-                    <Text style={styles.title}>Edit Mode Property</Text>
+                    <Text style={styles.title}>Edit Mode Project</Text>
                     <TextInput
                         title="Name:"
                         style={styles.editMode}
@@ -38,7 +38,7 @@ const DisplayGroup = ({project, onChangeText, isEditMode}) => {
     } else {
         return(
             <View>    
-                <Text style={styles.title}>View Mode Property</Text>
+                <Text style={styles.title}>View Mode Project</Text>
                 <TextInput
                     title="Name:"
                     value={project.name} 

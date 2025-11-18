@@ -1,6 +1,7 @@
 import { useSQLiteContext } from 'expo-sqlite';
 import { useEffect, useState } from "react";
 import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import {Link} from 'expo-router';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
 import DateDisplay from '../../components/DateDisplay'
@@ -89,9 +90,12 @@ const AddProjectForm =() => {
             value={form.comments}
             onChangeText={(text)=> setForm({ ...form, comments: text})}
         />
-        <CustomPressable onPress={handleSubmit}> 
-          Add Project 
-        </CustomPressable>
+        <Link href="/project" style={{marginHorizontal: 'auto'}}
+          asChild>
+            <CustomPressable onPress={handleSubmit}> 
+              Add Project 
+            </CustomPressable>
+        </Link>
     </View>
   );
 }
