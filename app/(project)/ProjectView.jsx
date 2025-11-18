@@ -16,16 +16,22 @@ const DisplayGroup = ({project, onChangeText, isEditMode}) => {
                         onChangeText={onChangeText[0]}
                     />
                     <TextInput
+                        title="Status:"
+                        style={styles.editMode}
+                        value={project.status}
+                        onChangeText={onChangeText[1]}
+                    />
+                    <TextInput
                         title="DueDate:"
                         style={styles.editMode}
                         value={project.due_date}
-                        onChangeText={onChangeText[1]}
+                        onChangeText={onChangeText[2]}
                     />
                     <TextInput
                         title="Comments:"
                         style={styles.editMode}
                         value={project.comments}
-                        onChangeText={onChangeText[2]}
+                        onChangeText={onChangeText[3]}
                     />
                     <TextInput
                         title="Id:"
@@ -42,6 +48,12 @@ const DisplayGroup = ({project, onChangeText, isEditMode}) => {
                 <TextInput
                     title="Name:"
                     value={project.name} 
+                    style={styles.display}
+                    editable={false}
+                    placeholder="You are in view mode"/>
+                <TextInput
+                    title="Status:"
+                    value={project.status} 
                     style={styles.display}
                     editable={false}
                     placeholder="You are in view mode"/>
@@ -82,6 +94,7 @@ const PropertyView = () =>{
 
     const onChangeTextArray = [
         (text) => setForm({...form, name: text}),
+        (text) => setForm({...form, status: text}),
         (text) => setForm({...form, due_date: text}),
         (text) => setForm({...form, comments: text}),
     ]
