@@ -19,6 +19,12 @@ const todo_list = () => {
                 To Do List
             </CustomPressable>
         </Link>
+        <Link href="/show_complete" style={{marginHorizontal: 'auto'}}
+        asChild>
+            <CustomPressable>
+                Complete List
+            </CustomPressable>
+        </Link>
         <Link href="/" style={{marginHorizontal: 'auto'}}
         asChild>
             <CustomPressable>

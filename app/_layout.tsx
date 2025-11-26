@@ -51,7 +51,7 @@ export default function RootLayout() {
               INSERT INTO projects VALUES (3, "Flour", '2025-10-22', '2025-10-29', 2, 'Safeway', 'open' );
               INSERT INTO projects VALUES (4, "Gatorade", '2025-10-22', '2025-10-30', 2, 'Safeway', 'open' );
               INSERT INTO projects VALUES (5, "Sugar", '2025-10-22', '2025-10-29', 2, 'Safeway', 'open' );
-              INSERT INTO projects VALUES (6, "Pumpkin", '2025-10-22', '2025-10-31', 2, 'Safeway', 'open' );
+              INSERT INTO projects VALUES (6, "Pumpkin", '2025-10-22', '2025-10-31', 2, 'Safeway', 'closed' );
               INSERT INTO projects VALUES (7, "Fix Gutter", '2025-10-22', '2025-11-30', 3, "It's raining alot", 'open' );
 
               select * from projects where cat_id = 3;

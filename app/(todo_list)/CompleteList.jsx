@@ -11,7 +11,7 @@ const Item = ({item, onLongPress, backgroundColor, textColor}) => (
   </TouchableOpacity>
 );
 
-const TodoList = () => {
+const CompleteList = () => {
     const router = useRouter();
 
     const [selectedId, setSelectedId] = useState();
@@ -23,8 +23,8 @@ const TodoList = () => {
     const loadProjects = async () => {
         try {
             setIsLoading(true);
-            const results = await db.getAllAsync(` SELECT * FROM projects WHERE status = 'open' or status ='Open'
-                ORDER BY due_date DESC`);
+            const results = await db.getAllAsync(` SELECT * FROM projects WHERE status = 'closed' or status = 'Closed' 
+                ORDER BY due_date  DESC`);
             setProjects(results);
         } catch (error) {
             console.error("Database error", error);           
@@ -60,7 +60,7 @@ const TodoList = () => {
 
     return(
         <View>
-            <Text style={styles.note}>Press and hold to select To Do</Text>
+            <Text style={styles.note}>Press and hold to select Complete</Text>
             <TouchableOpacity>
                 <FlatList
                     data={Projects}
@@ -77,7 +77,7 @@ const TodoList = () => {
     );
 }
 
-export default TodoList;
+export default CompleteList;
 
 const styles = StyleSheet.create({
   container: {

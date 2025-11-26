@@ -81,11 +81,12 @@ const DisplayGroup = ({project, onChangeText, isEditMode}) => {
 }
 
 const PropertyView = () =>{
-    const {id, name, due_date, comments} = useLocalSearchParams()
+    const {id, name, status, due_date, comments} = useLocalSearchParams()
     const [editMode, setEditMode] = useState(false)
     const [form, setForm] = useState({
         id: id,
         name: name,
+        status: status,
         due_date: due_date,
         comments: comments
     })
@@ -107,20 +108,27 @@ const PropertyView = () =>{
             if(!form.name || !form.due_date || !form.comments){
                 throw new Error('All fields are required')
             }
+
+            // validate status
+            if(form.status !== 'open' && form.status !== 'closed' && form.status !== 'Open' && form.status !== 'Closed' ){
+                throw new Error('status must be "open" or "closed"')
+            }
             
             const newName = form.name
+            const newStatus = form.status
             const newDueDate = form.due_date
             const newComments = form.comments
 
             await db.runAsync(                
-                `UPDATE projects SET name =?, due_date=?, comments =? WHERE id = ?`,
-                [newName, newDueDate, newComments, Number(id)]
+                `UPDATE projects SET name =?, due_date=?, status=?, comments =? WHERE id = ?`,
+                [newName, newDueDate, newStatus, newComments, Number(id)]
             )
 
             Alert.alert('Success', 'Property editted successfully!')
             setForm({
                 name: newName,
                 due_date: newDueDate,
+                status: newStatus,
                 comments: newComments,
                 // id: keyId
             })

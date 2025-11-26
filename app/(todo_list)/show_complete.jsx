@@ -1,23 +1,23 @@
 import { StyleSheet, Text } from 'react-native'
-import TodoList from './TodoList'
+import CompleteList from './CompleteList'
 import { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-const show_todo = () => {
+const show_complete = () => {
     const [showView, setShowView] = useState(false)
 
     
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.title}>
-                Find a To Do
+                Find Complete
             </Text>
-            <TodoList/>
+            <CompleteList/>
         </SafeAreaView>
     )
 }
 
-export default show_todo
+export default show_complete
 
 const styles = StyleSheet.create({
     container: {
