@@ -36,6 +36,7 @@ return (
         value={value}
         onChange={item => {
           setValue(item.value)
+          onChangeText
           return item.label;
         }}
       />
