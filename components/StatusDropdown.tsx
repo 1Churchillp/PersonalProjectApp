@@ -1,44 +1,45 @@
-import React, { useState, type } from "react";
+import React, { useState } from "react";
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import {Dropdown } from 'react-native-element-dropdown'
 
 
-const data = [
-    {label: 'option 1', value: '1' },
-    {label: 'option 2', value: '2'},
-]
+// const data = [
+//     {label: 'option 1', value: '1' },
+//     {label: 'option 2', value: '2'},
+// ]
 
-const status = [
+const data = [
     {label: 'open', value: '1' },
     {label: 'closed', value: '2'},
 ]
 
-export type StatusDropdownProps = {
-  type?: 'default'  |'Status',
-}
+// export type StatusDropdownProps = {
+//   type?: 'default'  |'Status',
+// }
 
-}
-const StatusDropdown = () => {
+const StatusDropdown = ({input='input',onChangeText={}, ...props}) => {
     const [value, setValue] = useState(null)
 
 return (
     <View style={styles.container}>
-      <Text style={styles.label}>Select an Option:</Text>
+      {/* <Text style={styles.label}>Select an Option:</Text> */}
+      {/* <Text> {input} </Text> */}
       <Dropdown
         style={styles.dropdown}
         placeholderStyle={styles.placeholderStyle}
         selectedTextStyle={styles.selectedTextStyle}
         // data={data}
-        data={type == 'Status' ? status : data}
+        data={data}
         labelField="label"
         valueField="value"
         placeholder="Select item"
         value={value}
         onChange={item => {
-          setValue(item.value);
+          setValue(item.value)
+          return item.label;
         }}
       />
-      {value && <Text style={styles.selectedValue}>Selected: {value === '1' ? 'open' : 'closed'}</Text>}
+      {/* {value && <Text style={styles.selectedValue}>Selected: {value === '1' ? 'open' : 'closed'}</Text>} */}
     </View>
   );
 };
