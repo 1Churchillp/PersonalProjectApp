@@ -2,6 +2,7 @@ import { useLocalSearchParams } from 'expo-router';
 import { useSQLiteContext } from "expo-sqlite";
 import { useState } from "react";
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import StatusDropdown from '../../components/StatusDropdown'
 
 
 const DisplayGroup = ({project, onChangeText, isEditMode}) => {
@@ -15,6 +16,9 @@ const DisplayGroup = ({project, onChangeText, isEditMode}) => {
                         value={project.name}
                         onChangeText={onChangeText[0]}
                     />
+                    <StatusDropdown type={'Status'}>
+
+                    </StatusDropdown>
                     <TextInput
                         title="Status:"
                         style={styles.editMode}
