@@ -1,48 +1,57 @@
-import React, { useState } from "react";
-import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import React, { useState} from "react";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import {Dropdown } from 'react-native-element-dropdown'
 
 
-// const data = [
-//     {label: 'option 1', value: '1' },
-//     {label: 'option 2', value: '2'},
-// ]
-
 const data = [
+    {label: 'option 1', value: '1' },
+    {label: 'option 2', value: '2'},
+]
+
+const status = [
     {label: 'open', value: '1' },
     {label: 'closed', value: '2'},
 ]
+type CallbackFunction = (selection:string) => string
 
-// export type StatusDropdownProps = {
-//   type?: 'default'  |'Status',
-// }
+export type StatusDropdownProps = {
+  onSelectChange : CallbackFunction
+  type?: 'default'  |'Status',
+} 
 
-const StatusDropdown = ({input='input',onChangeText={}, ...props}) => {
-    const [value, setValue] = useState(null)
+export function StatusDropdown ({
+  onSelectChange,
+  type = 'default'
+} : StatusDropdownProps) {
 
-return (
-    <View style={styles.container}>
-      {/* <Text style={styles.label}>Select an Option:</Text> */}
-      {/* <Text> {input} </Text> */}
-      <Dropdown
-        style={styles.dropdown}
-        placeholderStyle={styles.placeholderStyle}
-        selectedTextStyle={styles.selectedTextStyle}
-        // data={data}
-        data={data}
-        labelField="label"
-        valueField="value"
-        placeholder="Select item"
-        value={value}
-        onChange={item => {
-          setValue(item.value)
-          onChangeText
-          return item.label;
-        }}
-      />
-      {/* {value && <Text style={styles.selectedValue}>Selected: {value === '1' ? 'open' : 'closed'}</Text>} */}
-    </View>
-  );
+  const [dataType, setDataType] = useState ('default')
+  const [value, setValue] = useState(null)
+  const handleChange = (curr_value:React.SetStateAction<null>, label:string) => {
+    setValue(curr_value)
+    onSelectChange(label)
+  }
+
+  return (
+      <View style={styles.container}>
+        <Text style={styles.label}>Select an Option:</Text>
+        <Dropdown
+          style={styles.dropdown}
+          placeholderStyle={styles.placeholderStyle}
+          selectedTextStyle={styles.selectedTextStyle}
+          // data={data}
+          data={type == 'Status' ? status : data}
+          labelField="label"
+          valueField="value"
+          placeholder="Select item"
+          value={value}
+          onChange={item => {
+            // 'setValue(item.value);
+            handleChange(item.value, item.label)}
+          }
+        />
+        {value && <Text style={styles.selectedValue}>Selected: {value === '1' ? 'open' : 'closed'}</Text>}
+      </View>
+    );
 };
 
 const styles = StyleSheet.create({
