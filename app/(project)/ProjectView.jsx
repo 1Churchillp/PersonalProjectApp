@@ -2,10 +2,13 @@ import { useLocalSearchParams } from 'expo-router';
 import { useSQLiteContext } from "expo-sqlite";
 import { useState } from "react";
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { ThemedText } from '@/components/themed-text';
+import { ThemedView } from '@/components/themed-view';
 import StatusDropdown from '../../components/StatusDropdown'
 
+import { useColorScheme } from '@/hooks/use-color-scheme';
 
-const DisplayGroup = ({project, onChangeText, isEditMode}) => {
+const DisplayGroup = ({project, onChangeText, isEditMode, styles}) => {
     if (isEditMode){
         return(  
                 <View>
@@ -86,6 +89,7 @@ const DisplayGroup = ({project, onChangeText, isEditMode}) => {
 }
 
 const PropertyView = () =>{
+    const colorScheme = useColorScheme()
     const {id, name, status, due_date, comments} = useLocalSearchParams()
     const [editMode, setEditMode] = useState(false)
     const [form, setForm] = useState({
@@ -176,22 +180,113 @@ const PropertyView = () =>{
 
 
     return (
-        <View style={styles.container}>
+        <ThemedView style={styles.container}>
             <DisplayGroup
                 project={form}
                 // onChangeText={(text)=> setForm({ ...form, name: text})}
                 onChangeText={onChangeTextArray}
                 isEditMode={editMode}
+                styles={colorScheme === 'dark' ? stylesDark: stylesLight}
             />
             <ButtonGroup/>        
-        </View>
+        </ThemedView>
     )
 
 }
 
 export default PropertyView;
+const styles= StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center' ,
+        // marginTop: StatusBar.currentHeight || 0,
+    },
+        editMode: {
+        height: 40,
+        borderColor: 'black',
+        borderWidth: 1,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        fontSize: 24,
+    },
+    display: {
+        height: 40,
+        borderColor: '#fff',
+        color: 'darkgrey',
+        borderWidth: 1,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        fontSize: 24,
+    },
+    item: {
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 2,
+        backgroundColor: 'royalblue',
+    },
+    buttonGroup: {
+        padding: '1px',
+        flexDirection: 'row',
+        maxWidth: '90%',
+    },
+    buttonText: {
+        color: 'lightblue',
+        fontSize: 24,
+    },
+    title: {
+        marginBottom: "20px",
+        fontSize: 24,
+        color: 'royalblue',
+    },
+})
 
-const styles = StyleSheet.create({
+
+const stylesLight = StyleSheet.create({
+    editMode: {
+        height: 40,
+        borderColor: 'black',
+        borderWidth: 1,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        fontSize: 24,
+    },
+    display: {
+        height: 40,
+        borderColor: '#fff',
+        color: 'darkgrey',
+        borderWidth: 1,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        fontSize: 24,
+    },
+    item: {
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 2,
+        backgroundColor: 'royalblue',
+    },
+    buttonGroup: {
+        padding: '1px',
+        flexDirection: 'row',
+        maxWidth: '90%',
+    // color: 'black',
+    // fontSize: 48,
+    // alignItems: 'stretch',
+    // justifyContent: 'flex-start',
+    // display: 'flex',
+    },
+    buttonText: {
+        color: 'lightblue',
+        fontSize: 24,
+    },
+    title: {
+        marginBottom: "20px",
+        fontSize: 24,
+        color: 'royalblue',
+    },
+});
+
+const stylesDark = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center' ,
@@ -199,7 +294,8 @@ const styles = StyleSheet.create({
     },
     editMode: {
         height: 40,
-        borderColor: 'black',
+        borderColor: 'white',
+        color: 'white',
         borderWidth: 1,
         marginBottom: 10,
         paddingHorizontal: 10,
