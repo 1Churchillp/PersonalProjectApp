@@ -82,7 +82,7 @@ const AddProjectForm =() => {
             </DateDisplay>
           )}
           < Button onPress={showDatePicker} title="Tap to Change Due Date" />
-      </View>
+        </View>
 
         <TextInput
             style={styles.input}
