@@ -70,6 +70,7 @@ const AddProjectForm =() => {
         <View style={styles.sideContainer}>
           {showPicker ? (
             <DateTimePicker
+              style={colorScheme === 'dark' ? stylesDark.input : stylesLight.input}
               testID="dateTimePicker"
               value={date}
               mode="date" // Can be 'date', 'time', or 'datetime'
@@ -78,6 +79,7 @@ const AddProjectForm =() => {
             />
             ):(
             <DateDisplay 
+              style={colorScheme === 'dark' ? stylesDark.input : stylesLight.input}
               onPress={showDatePicker}
               date={date.toLocaleDateString()}>
                 Due Date: 
