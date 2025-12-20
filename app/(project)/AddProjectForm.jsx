@@ -67,24 +67,35 @@ const AddProjectForm =() => {
             value={form.name}
             onChangeText={(text)=> setForm({ ...form, name: text})}
         />
-        <View style={styles.sideContainer}>
+        <View >
           {showPicker ? (
-            <DateTimePicker
-              style={colorScheme === 'dark' ? stylesDark.input : stylesLight.input}
-              testID="dateTimePicker"
-              value={date}
-              mode="date" // Can be 'date', 'time', or 'datetime'
-              display="default" // On Android, 'default' or 'spinner'. On iOS, 'default' or 'spinner'
-              onChange={onChange}
-            />
+            <View style={styles.sideContainer}>
+              <View>
+                <Text style={colorScheme === 'dark' ? stylesDark.label : stylesLight.label}>Due Date:</Text>
+              </View>
+              <View>
+                <DateTimePicker
+                  style={colorScheme === 'dark' ? stylesDark.input : stylesLight.input}
+                  testID="dateTimePicker"
+                  value={date}
+                  mode="date" // Can be 'date', 'time', or 'datetime'
+                  display="default" // On Android, 'default' or 'spinner'. On iOS, 'default' or 'spinner'
+                  onChange={onChange}
+                />
+              </View>
+            </View>  
             ):(
-            <View>
-              <Text style={colorScheme === 'dark' ? stylesDark.date : stylesLight.date}>Due Date:</Text>
-              <DateDisplay 
-                style={colorScheme === 'dark' ? stylesDark.date : stylesLight.date}
-                onPress={showDatePicker}
-                date={date.toLocaleDateString()}>
-              </DateDisplay>
+            <View style={styles.sideContainer}>
+              <View>
+                <Text style={colorScheme === 'dark' ? stylesDark.label : stylesLight.label}>Due Date:</Text>
+              </View>
+              <View>
+                {/* <DateDisplay 
+                  style={colorScheme === 'dark' ? stylesDark.date : stylesLight.date}
+                  onPress={showDatePicker}
+                  date={date.toLocaleDateString()}>
+                </DateDisplay> */}
+              </View>
             </View>
           )}
           < Button onPress={showDatePicker} title="Tap to Change Due Date" />
@@ -130,9 +141,9 @@ const styles = StyleSheet.create({
     },
     sideContainer: {
         flexDirection: 'row', // Arranges children horizontally
-        justifyContent: 'space-around', // Distributes space between items
+        justifyContent: 'flex-start', // Distributes space between items
         alignItems: 'center', // Aligns items vertically in the center
-        padding: 10,
+        padding: 0,
       },
 
   addButton: {
@@ -159,6 +170,15 @@ const stylesLight = StyleSheet.create({
     //     shadowRadius: 3.84,
     //     elevation: 5,
     // },
+    label: {
+        height: 40,
+        borderColor: 'black',
+        borderWidth: 0,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        color: 'black',
+        fontSize: 30
+    },
     date: {
         height: 40,
         borderColor: 'black',
@@ -213,6 +233,16 @@ const stylesDark = StyleSheet.create({
         height: 40,
         borderColor: '#fff',
         borderWidth: 1,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        color: 'white',
+        fontSize: 30
+
+    },
+    label: {
+        height: 40,
+        borderColor: '#fff',
+        borderWidth: 0,
         marginBottom: 10,
         paddingHorizontal: 10,
         color: 'white',
