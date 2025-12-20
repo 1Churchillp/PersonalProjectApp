@@ -78,12 +78,14 @@ const AddProjectForm =() => {
               onChange={onChange}
             />
             ):(
-            <DateDisplay 
-              style={colorScheme === 'dark' ? stylesDark.input : stylesLight.input}
-              onPress={showDatePicker}
-              date={date.toLocaleDateString()}>
-                Due Date: 
-            </DateDisplay>
+            <View>
+              <Text style={colorScheme === 'dark' ? stylesDark.date : stylesLight.date}>Due Date:</Text>
+              <DateDisplay 
+                style={colorScheme === 'dark' ? stylesDark.date : stylesLight.date}
+                onPress={showDatePicker}
+                date={date.toLocaleDateString()}>
+              </DateDisplay>
+            </View>
           )}
           < Button onPress={showDatePicker} title="Tap to Change Due Date" />
         </View>
@@ -117,6 +119,7 @@ const styles = StyleSheet.create({
     //     shadowRadius: 3.84,
     //     elevation: 5,
     // },
+
     input: {
         height: 80,
         borderColor: '#fff',
@@ -156,6 +159,15 @@ const stylesLight = StyleSheet.create({
     //     shadowRadius: 3.84,
     //     elevation: 5,
     // },
+    date: {
+        height: 40,
+        borderColor: 'black',
+        borderWidth: 1,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        color: 'black',
+        fontSize: 30
+    },
     input: {
         height: 40,
         borderColor: 'black',
@@ -197,6 +209,16 @@ const stylesDark = StyleSheet.create({
     //     shadowRadius: 3.84,
     //     elevation: 5,
     // },
+    date: {
+        height: 40,
+        borderColor: '#fff',
+        borderWidth: 1,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        color: 'white',
+        fontSize: 30
+
+    },
     input: {
         height: 40,
         borderColor: '#fff',

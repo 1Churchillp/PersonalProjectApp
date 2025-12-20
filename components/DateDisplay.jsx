@@ -18,9 +18,9 @@
       };
 
       return (
-        <Pressable style={getTextStyle} onPress={onPress} {...props}>
-          {typeof children === 'string' ? <Text style={getTextStyle()}>{children}</Text> : children}
-          {typeof date === 'string' ? <Text style={getTextStyle()}>{date}</Text> : date}
+        <Pressable style={style} onPress={onPress} {...props}>
+          {typeof children === 'string' ? <Text style={style}>{children}</Text> : children}
+          {typeof date === 'string' ? <Text style={style}>{date}</Text> : date}
         </Pressable>
       );
     };
