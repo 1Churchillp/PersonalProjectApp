@@ -7,11 +7,12 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import DateDisplay from '../../components/DateDisplay'
 import DatePressable from '../../components/DatePressable';
 import CustomPressable from '../../components/CustomPressable';
+import { useColorScheme } from '@/hooks/use-color-scheme';
 
 
 
 const AddProjectForm =() => {
-
+  const colorScheme = useColorScheme();
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
   const [form, setForm] = useState({
@@ -56,11 +57,12 @@ const AddProjectForm =() => {
         }
     };
 
+
   return (
    
     <View>        
         <TextInput
-            style={styles.input}
+            style={colorScheme === 'dark' ? stylesDark.input : stylesLight.input}
             placeholder="Name"
             value={form.name}
             onChangeText={(text)=> setForm({ ...form, name: text})}
@@ -85,7 +87,7 @@ const AddProjectForm =() => {
         </View>
 
         <TextInput
-            style={styles.input}
+            style={colorScheme === 'dark' ? stylesDark.input : stylesLight.input}
             placeholder="Comments"
             value={form.comments}
             onChangeText={(text)=> setForm({ ...form, comments: text})}
@@ -101,24 +103,25 @@ const AddProjectForm =() => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        paddinf: 20,
-        backgroundColor: '#fff',
-        borderRadius: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2},
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-    },
+    // container: {
+    //     flex: 1,
+    //     justifyContent: 'center',
+    //     paddinf: 20,
+    //     backgroundColor: '#fff',
+    //     borderRadius: 10,
+    //     shadowColor: '#000',
+    //     shadowOffset: { width: 0, height: 2},
+    //     shadowOpacity: 0.25,
+    //     shadowRadius: 3.84,
+    //     elevation: 5,
+    // },
     input: {
-        height: 40,
+        height: 80,
         borderColor: '#fff',
         borderWidth: 1,
         marginBottom: 10,
         paddingHorizontal: 10,
+        fontSize: 36
     },
     sideContainer: {
         flexDirection: 'row', // Arranges children horizontally
@@ -138,4 +141,85 @@ const styles = StyleSheet.create({
   },
 });
 
+const stylesLight = StyleSheet.create({
+    // container: {
+    //     flex: 1,
+    //     justifyContent: 'center',
+    //     paddinf: 20,
+    //     backgroundColor: '#fff',
+    //     borderRadius: 10,
+    //     shadowColor: '#000',
+    //     shadowOffset: { width: 0, height: 2},
+    //     shadowOpacity: 0.25,
+    //     shadowRadius: 3.84,
+    //     elevation: 5,
+    // },
+    input: {
+        height: 40,
+        borderColor: 'black',
+        borderWidth: 1,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        color: 'black',
+        fontSize: 30
+
+    },
+    sideContainer: {
+        flexDirection: 'row', // Arranges children horizontally
+        justifyContent: 'space-around', // Distributes space between items
+        alignItems: 'center', // Aligns items vertically in the center
+        padding: 10,
+      },
+
+  addButton: {
+    backgroundColor: 'pink',
+    borderRadius: 5,
+    padding: 10,
+  },
+  addButtonText: {
+    fontSize: 18,
+    color: 'black',
+  },
+});
+
+const stylesDark = StyleSheet.create({
+    // container: {
+    //     flex: 1,
+    //     justifyContent: 'center',
+    //     paddinf: 20,
+    //     backgroundColor: '#fff',
+    //     borderRadius: 10,
+    //     shadowColor: '#000',
+    //     shadowOffset: { width: 0, height: 2},
+    //     shadowOpacity: 0.25,
+    //     shadowRadius: 3.84,
+    //     elevation: 5,
+    // },
+    input: {
+        height: 40,
+        borderColor: '#fff',
+        borderWidth: 1,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        color: 'white',
+        fontSize: 30
+
+    },
+    sideContainer: {
+        flexDirection: 'row', // Arranges children horizontally
+        justifyContent: 'space-around', // Distributes space between items
+        alignItems: 'center', // Aligns items vertically in the center
+        padding: 10,
+      },
+
+  addButton: {
+    backgroundColor: 'pink',
+    borderRadius: 5,
+    padding: 10,
+  },
+  addButtonText: {
+    fontSize: 18,
+    color: 'black',
+  },
+});
 export default AddProjectForm;

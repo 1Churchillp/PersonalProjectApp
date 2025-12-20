@@ -1,13 +1,15 @@
 import { StyleSheet, Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import AddProjectForm from './AddProjectForm'
+import { ThemedText} from '@/components/themed-text';
+
 // test note
 const add_project = () => {
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>
+            <ThemedText style={styles.title}>
                 Enter a new Project
-            </Text>
+            </ThemedText>
             <AddProjectForm/>
         </SafeAreaView>
     )
