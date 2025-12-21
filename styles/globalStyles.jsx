@@ -69,8 +69,14 @@ export const globalTextStyles = StyleSheet.create({
 })
 
 export const globalStylesLight = StyleSheet.create({
+    rowContainer:{
+        padding: '1px',
+        flexDirection: 'row',
+        maxWidth: '90%',
+    },
     title: {
-        marginBottom: "20px",
+        textAlign: 'center',
+        marginBottom: "400px",
         fontSize: 24,
         color: 'royalblue',
     },
@@ -79,19 +85,23 @@ export const globalStylesLight = StyleSheet.create({
         color: 'dimgray',
         marginBottom: 10,
         paddingHorizontal: 10,
+        paddingVertical: 0, 
+        paddingTop: 10,
+        paddingBottom: 0,
         fontSize: 20,
+        borderWidth:0
     },
     viewData:{
         height: 40,
         color: 'dimgray',
         marginBottom: 10,
         paddingHorizontal: 10,
+        paddingVertical: 0, 
+        paddingTop: 0,
+        paddingBottom: 0,
         fontSize: 24,
-    },
-    rowContainer:{
-        padding: '1px',
-        flexDirection: 'row',
-        maxWidth: '90%',
+        borderWidth:0
+
     },
     editData:{
         height: 40,

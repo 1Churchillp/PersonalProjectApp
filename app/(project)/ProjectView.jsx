@@ -53,7 +53,9 @@ const DisplayGroup = ({project, onChangeText, isEditMode, styles}) => {
     } else {
         return(
             <View>    
+                
                 <Text style={styles.title}>View Mode Project</Text>
+                
                 <View style={styles.rowContainer}>
                     <View>
                         <Text style={styles.label}>Name:</Text>
@@ -67,30 +69,61 @@ const DisplayGroup = ({project, onChangeText, isEditMode, styles}) => {
                             placeholder="You are in view mode"/>
                     </View>
                 </View>
-                <TextInput
-                    title="Status:"
-                    value={project.status} 
-                    style={styles.viewData}
-                    editable={false}
-                    placeholder="You are in view mode"/>
-                <TextInput
-                    title="DueDate:"
-                    value={project.due_date} 
-                    style={styles.viewData}
-                    editable={false}
-                    placeholder="You are in view mode"/>
-                <TextInput
-                    title="Comments:"
-                    value={project.comments} 
-                    style={styles.viewData}
-                    editable={false}
-                    placeholder="You are in view mode"/>
-                <TextInput
-                    title="Id:"
-                    value={project.id} 
-                    style={styles.viewData}
-                    editable={false}
-                    placeholder="You are in view mode"/>
+
+                <View style={styles.rowContainer}>
+                    <View>
+                        <Text style={styles.label}>Status:</Text>
+                    </View>
+                    <View>
+                    <TextInput
+                        title="Status:"
+                        value={project.status} 
+                        style={styles.viewData}
+                        editable={false}
+                        placeholder="You are in view mode"/>
+                    </View>
+                </View>   
+                
+                <View style={styles.rowContainer}>
+                    <View>
+                        <Text style={styles.label}>Due Date:</Text>
+                    </View>
+                    <View>                             
+                    <TextInput
+                        title="DueDate:"
+                        value={project.due_date} 
+                        style={styles.viewData}
+                        editable={false}
+                        placeholder="You are in view mode"/>
+                    </View>                
+                </View> 
+
+                <View style={styles.rowContainer}>
+                    <View>
+                        <Text style={styles.label}>Comments:</Text>
+                    </View>
+                    <View>                               
+                        <TextInput
+                            title="Comments:"
+                            value={project.comments} 
+                            style={styles.viewData}
+                            editable={false}
+                            placeholder="You are in view mode"/>
+                    </View>                
+                </View> 
+                <View style={styles.rowContainer}>
+                    <View>
+                        <Text style={styles.label}>Id:</Text>
+                    </View>
+                    <View>
+                        <TextInput
+                            title="Id:"
+                            value={project.id} 
+                            style={styles.viewData}
+                            editable={false}
+                            placeholder="You are in view mode"/>
+                    </View>                
+                </View> 
             </View>
         )
     }
