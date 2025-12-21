@@ -5,6 +5,7 @@ import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "reac
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import StatusDropdown from '../../components/StatusDropdown'
+import { globalStylesLight } from '../../styles/globalStyles';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
@@ -15,7 +16,7 @@ const DisplayGroup = ({project, onChangeText, isEditMode, styles}) => {
                     <Text style={styles.title}>Edit Mode Project</Text>
                     <TextInput
                         title="Name:"
-                        style={styles.editMode}
+                        style={styles.editData}
                         value={project.name}
                         onChangeText={onChangeText[0]}
                     />
@@ -25,25 +26,25 @@ const DisplayGroup = ({project, onChangeText, isEditMode, styles}) => {
                     </StatusDropdown>
                     <TextInput
                         title="Status:"
-                        style={styles.editMode}
+                        style={styles.editData}
                         value={project.status}
                         onChangeText={onChangeText[1]}
                     />
                     <TextInput
                         title="DueDate:"
-                        style={styles.editMode}
+                        style={styles.editData}
                         value={project.due_date}
                         onChangeText={onChangeText[2]}
                     />
                     <TextInput
                         title="Comments:"
-                        style={styles.editMode}
+                        style={styles.editData}
                         value={project.comments}
                         onChangeText={onChangeText[3]}
                     />
                     <TextInput
                         title="Id:"
-                        style={styles.display}
+                        style={styles.viewData}
                         value={project.id}
                         editable={false}            
                     />
@@ -53,34 +54,41 @@ const DisplayGroup = ({project, onChangeText, isEditMode, styles}) => {
         return(
             <View>    
                 <Text style={styles.title}>View Mode Project</Text>
-                <TextInput
-                    title="Name:"
-                    value={project.name} 
-                    style={styles.display}
-                    editable={false}
-                    placeholder="You are in view mode"/>
+                <View style={styles.rowContainer}>
+                    <View>
+                        <Text style={styles.label}>Name:</Text>
+                    </View>
+                    <View>
+                        <TextInput
+                            title="Name:"
+                            value={project.name} 
+                            style={styles.viewData}
+                            editable={false}
+                            placeholder="You are in view mode"/>
+                    </View>
+                </View>
                 <TextInput
                     title="Status:"
                     value={project.status} 
-                    style={styles.display}
+                    style={styles.viewData}
                     editable={false}
                     placeholder="You are in view mode"/>
                 <TextInput
                     title="DueDate:"
                     value={project.due_date} 
-                    style={styles.display}
+                    style={styles.viewData}
                     editable={false}
                     placeholder="You are in view mode"/>
                 <TextInput
                     title="Comments:"
                     value={project.comments} 
-                    style={styles.display}
+                    style={styles.viewData}
                     editable={false}
                     placeholder="You are in view mode"/>
                 <TextInput
                     title="Id:"
                     value={project.id} 
-                    style={styles.display}
+                    style={styles.viewData}
                     editable={false}
                     placeholder="You are in view mode"/>
             </View>
@@ -186,7 +194,7 @@ const PropertyView = () =>{
                 // onChangeText={(text)=> setForm({ ...form, name: text})}
                 onChangeText={onChangeTextArray}
                 isEditMode={editMode}
-                styles={colorScheme === 'dark' ? stylesDark: stylesLight}
+                styles={colorScheme === 'dark' ? stylesDark: globalStylesLight}
             />
             <ButtonGroup/>        
         </ThemedView>
@@ -200,6 +208,11 @@ const styles= StyleSheet.create({
         flex: 1,
         alignItems: 'center' ,
         // marginTop: StatusBar.currentHeight || 0,
+    },
+    rowContainer: {
+        padding: '1px',
+        flexDirection: 'row',
+        maxWidth: '90%',
     },
         editMode: {
         height: 40,

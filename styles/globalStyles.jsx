@@ -66,4 +66,39 @@ export const globalTextStyles = StyleSheet.create({
         color: 'black',
         fontSize: 14,
     }
+})
+
+export const globalStylesLight = StyleSheet.create({
+    title: {
+        marginBottom: "20px",
+        fontSize: 24,
+        color: 'royalblue',
+    },
+    label:{
+        height: 40,
+        color: 'dimgray',
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        fontSize: 20,
+    },
+    viewData:{
+        height: 40,
+        color: 'dimgray',
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        fontSize: 24,
+    },
+    rowContainer:{
+        padding: '1px',
+        flexDirection: 'row',
+        maxWidth: '90%',
+    },
+    editData:{
+        height: 40,
+        borderColor: 'black',
+        borderWidth: 1,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        fontSize: 24,
+    }
 });
