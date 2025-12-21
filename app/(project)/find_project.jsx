@@ -3,6 +3,7 @@ import ProjectList from './ProjectList'
 // import ProjectView from './ProjectView-old'
 import { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { ThemedText} from '@/components/themed-text';
 
 const find_project = () => {
     const [showView, setShowView] = useState(false)
@@ -10,9 +11,12 @@ const find_project = () => {
     
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>
+            <ThemedText style={styles.title}>
                 Find a Project
-            </Text>
+            </ThemedText>
+                        {/* <Text style={styles.title}>
+                Find a Project
+            </Text> */}
             <ProjectList/>
         </SafeAreaView>
     )

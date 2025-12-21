@@ -19,10 +19,16 @@
 
       return (
         <Pressable style={style} onPress={onPress} {...props}>
-          {typeof children === 'string' ? <Text style={style}>{children}</Text> : children}
-          {typeof date === 'string' ? <Text style={style}>{date}</Text> : date}
+          {/* {typeof children === 'string' ? <Text style={style}>{children}</Text> : children} */}
+          {typeof date === 'string' ? <Text style={[style, styles.noBorder]}>{date}</Text> : date}
         </Pressable>
       );
     };
 
     export default DateDisplay;
+
+    const styles = StyleSheet.create({
+      noBorder:{
+        borderWidth: 0
+      }
+    })

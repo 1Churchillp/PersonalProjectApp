@@ -81,6 +81,7 @@ const AddProjectForm =() => {
                   mode="date" // Can be 'date', 'time', or 'datetime'
                   display="default" // On Android, 'default' or 'spinner'. On iOS, 'default' or 'spinner'
                   onChange={onChange}
+                  open={true}
                 />
               </View>
             </View>  
@@ -90,15 +91,15 @@ const AddProjectForm =() => {
                 <Text style={colorScheme === 'dark' ? stylesDark.label : stylesLight.label}>Due Date:</Text>
               </View>
               <View>
-                {/* <DateDisplay 
+                <DateDisplay 
                   style={colorScheme === 'dark' ? stylesDark.date : stylesLight.date}
                   onPress={showDatePicker}
                   date={date.toLocaleDateString()}>
-                </DateDisplay> */}
+                </DateDisplay>
               </View>
             </View>
           )}
-          < Button onPress={showDatePicker} title="Tap to Change Due Date" />
+          {/* < Button onPress={showDatePicker} title="Tap to Change Due Date" /> */}
         </View>
 
         <TextInput
@@ -118,19 +119,6 @@ const AddProjectForm =() => {
 }
 
 const styles = StyleSheet.create({
-    // container: {
-    //     flex: 1,
-    //     justifyContent: 'center',
-    //     paddinf: 20,
-    //     backgroundColor: '#fff',
-    //     borderRadius: 10,
-    //     shadowColor: '#000',
-    //     shadowOffset: { width: 0, height: 2},
-    //     shadowOpacity: 0.25,
-    //     shadowRadius: 3.84,
-    //     elevation: 5,
-    // },
-
     input: {
         height: 80,
         borderColor: '#fff',
@@ -141,7 +129,7 @@ const styles = StyleSheet.create({
     },
     sideContainer: {
         flexDirection: 'row', // Arranges children horizontally
-        justifyContent: 'flex-start', // Distributes space between items
+        justifyContent: 'flex-start', // Left Justify
         alignItems: 'center', // Aligns items vertically in the center
         padding: 0,
       },
@@ -158,18 +146,6 @@ const styles = StyleSheet.create({
 });
 
 const stylesLight = StyleSheet.create({
-    // container: {
-    //     flex: 1,
-    //     justifyContent: 'center',
-    //     paddinf: 20,
-    //     backgroundColor: '#fff',
-    //     borderRadius: 10,
-    //     shadowColor: '#000',
-    //     shadowOffset: { width: 0, height: 2},
-    //     shadowOpacity: 0.25,
-    //     shadowRadius: 3.84,
-    //     elevation: 5,
-    // },
     label: {
         height: 40,
         borderColor: 'black',
@@ -217,18 +193,6 @@ const stylesLight = StyleSheet.create({
 });
 
 const stylesDark = StyleSheet.create({
-    // container: {
-    //     flex: 1,
-    //     justifyContent: 'center',
-    //     paddinf: 20,
-    //     backgroundColor: '#fff',
-    //     borderRadius: 10,
-    //     shadowColor: '#000',
-    //     shadowOffset: { width: 0, height: 2},
-    //     shadowOpacity: 0.25,
-    //     shadowRadius: 3.84,
-    //     elevation: 5,
-    // },
     date: {
         height: 40,
         borderColor: '#fff',
