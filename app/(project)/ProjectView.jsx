@@ -24,12 +24,12 @@ const DisplayGroup = ({project, onChangeText, isEditMode, styles}) => {
                         input={project.status}
                         onSelectChange={onChangeText[1]}>
                     </StatusDropdown>
-                    <TextInput
+                    {/* <TextInput
                         title="Status:"
                         style={styles.editData}
                         value={project.status}
                         onChangeText={onChangeText[1]}
-                    />
+                    /> */}
                     <TextInput
                         title="DueDate:"
                         style={styles.editData}
@@ -240,6 +240,7 @@ const styles= StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center' ,
+        // tint: '#0a7ea4',
         // marginTop: StatusBar.currentHeight || 0,
     },
     rowContainer: {

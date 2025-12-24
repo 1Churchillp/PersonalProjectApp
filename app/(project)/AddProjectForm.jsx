@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start', // Left Justify
         alignItems: 'center', // Aligns items vertically in the center
         padding: 0,
+        maxWidth: '90%',
       },
 
   addButton: {

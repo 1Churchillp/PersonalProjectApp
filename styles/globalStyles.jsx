@@ -76,7 +76,7 @@ export const globalStylesLight = StyleSheet.create({
     },
     title: {
         textAlign: 'center',
-        marginBottom: "400px",
+        marginBottom: "40px",
         fontSize: 24,
         color: 'royalblue',
     },
@@ -110,5 +110,6 @@ export const globalStylesLight = StyleSheet.create({
         marginBottom: 10,
         paddingHorizontal: 10,
         fontSize: 24,
+        borderRadius: 5,
     }
 });

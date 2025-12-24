@@ -33,7 +33,7 @@ export function StatusDropdown ({
 
   return (
       <View style={styles.container}>
-        <Text style={styles.label}>Select an Option:</Text>
+        {/* <Text style={styles.label}>Select an Option:</Text> */}
         <Dropdown
           style={styles.dropdown}
           placeholderStyle={styles.placeholderStyle}
@@ -49,22 +49,29 @@ export function StatusDropdown ({
             handleChange(item.value, item.label)}
           }
         />
-        {value && <Text style={styles.selectedValue}>Selected: {value === '1' ? 'open' : 'closed'}</Text>}
+        {/* {value && <Text style={styles.selectedValue}>Selected: {value === '1' ? 'open' : 'closed'}</Text>} */}
       </View>
     );
 };
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: 0,
     backgroundColor: '#fff',
   },
   dropdown: {
-    height: 50,
-    borderColor: 'gray',
-    borderWidth: 0.5,
-    borderRadius: 8,
-    paddingHorizontal: 8,
+        height: 40,
+        borderColor: 'black',
+        borderWidth: 1,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        fontSize: 24,
+        borderRadius: 5,
+    // height: 50,
+    // borderColor: 'gray',
+    // borderWidth: 0.5,
+    // borderRadius: 8,
+    // paddingHorizontal: 8,
   },
   label: {
     marginBottom: 10,
