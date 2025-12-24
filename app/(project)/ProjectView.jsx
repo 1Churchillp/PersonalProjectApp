@@ -20,9 +20,13 @@ const DisplayGroup = ({project, onChangeText, isEditMode, styles}) => {
                         value={project.name}
                         onChangeText={onChangeText[0]}
                     />
-                    <StatusDropdown type= 'Status'
+                    <StatusDropdown 
+                        viewStyle={styles.editData}
+                        textStyle={styles.editData}
+                        type= 'Status'
                         input={project.status}
-                        onSelectChange={onChangeText[1]}>
+                        onSelectChange={onChangeText[1]}
+                        valueIn={project.status === 'open' ? 1 : 2}>
                     </StatusDropdown>
                     {/* <TextInput
                         title="Status:"

@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { Alert, StyleProp, StyleSheet, Text, TextStyle, ViewStyle, View } from "react-native";
 import {Dropdown } from 'react-native-element-dropdown'
 
 
@@ -9,19 +9,29 @@ const data = [
 ]
 
 const status = [
+    // {label: 'Select status', value: '0' },
     {label: 'open', value: '1' },
     {label: 'closed', value: '2'},
 ]
 type CallbackFunction = (selection:string) => string
 
 export type StatusDropdownProps = {
+  viewStyle?: StyleProp<ViewStyle>
+  textStyle?: StyleProp<TextStyle>
   onSelectChange : CallbackFunction
   type?: 'default'  |'Status',
+  valueIn?: 0| 1 | 2
+  // valueIn?: null|'Select status' | 'open' | 'closed'
+  // valueIn?:React.SetStateAction<null>
 } 
 
 export function StatusDropdown ({
+  viewStyle,
+  textStyle,
   onSelectChange,
-  type = 'default'
+  type = 'default',
+  valueIn = 0,
+  // valueIn(0),
 } : StatusDropdownProps) {
 
   const [dataType, setDataType] = useState ('default')
@@ -33,16 +43,16 @@ export function StatusDropdown ({
 
   return (
       <View style={styles.container}>
-        {/* <Text style={styles.label}>Select an Option:</Text> */}
+        {/* <Text style={styles.label}>Select an Option: {valueIn} </Text> */}
         <Dropdown
-          style={styles.dropdown}
+          style={viewStyle}
           placeholderStyle={styles.placeholderStyle}
           selectedTextStyle={styles.selectedTextStyle}
           // data={data}
           data={type == 'Status' ? status : data}
           labelField="label"
           valueField="value"
-          placeholder="Select item"
+          placeholder={valueIn === 0 ? "Select item": valueIn === 1 ? 'open' : 'closed'}
           value={value}
           onChange={item => {
             // 'setValue(item.value);
@@ -67,6 +77,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         fontSize: 24,
         borderRadius: 5,
+
+
     // height: 50,
     // borderColor: 'gray',
     // borderWidth: 0.5,
@@ -78,10 +90,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   placeholderStyle: {
-    fontSize: 16,
+    fontSize: 24,
   },
   selectedTextStyle: {
-    fontSize: 16,
+    fontSize: 24,
   },
   selectedValue: {
     marginTop: 20,
