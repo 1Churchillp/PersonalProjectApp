@@ -111,5 +111,75 @@ export const globalStylesLight = StyleSheet.create({
         paddingHorizontal: 10,
         fontSize: 24,
         borderRadius: 5,
+    },
+    deleteData:{
+        height: 40,   
+        color: 'black',
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        fontSize: 24,
     }
-});
+})
+
+export const globalStylesDark = StyleSheet.create({
+    rowContainer:{
+        padding: '1px',
+        flexDirection: 'row',
+        maxWidth: '90%',
+    },
+    title: {
+        textAlign: 'center',
+        marginBottom: "40px",
+        fontSize: 24,
+        color: 'royalblue',
+    },
+    label:{
+        height: 40,
+        color: 'white',
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 0, 
+        paddingTop: 10,
+        paddingBottom: 0,
+        fontSize: 20,
+        borderWidth:0
+    },
+    viewData:{
+        height: 40,
+        color: 'white',
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 0, 
+        paddingTop: 0,
+        paddingBottom: 0,
+        fontSize: 24,
+        borderWidth:0
+
+    },
+    editContainer:{
+        borderRadius: 5,
+        borderColor: 'white',
+        borderWidth: 1,
+        backgroundColor: 'black'
+    },
+    editData:{
+        height: 40,
+        
+        color: 'white',
+        
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        fontSize: 24,
+        
+    },
+    deleteData:{
+        height: 40,
+        
+        color: 'white',
+        
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        fontSize: 24,
+        
+    }
+});;

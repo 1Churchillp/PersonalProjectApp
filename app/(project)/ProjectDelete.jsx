@@ -2,9 +2,10 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSQLiteContext } from "expo-sqlite";
 import { useState } from "react";
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { globalStylesLight, globalStylesDark } from '../../styles/globalStyles';
+import { useColorScheme } from '@/hooks/use-color-scheme';
 
-
-const DisplayGroup = ({project, onChangeText, isDeleteMode}) => {
+const DisplayGroup = ({styles, project, onChangeText, isDeleteMode}) => {
         if(isDeleteMode){ 
         return(
             <View>
@@ -12,23 +13,27 @@ const DisplayGroup = ({project, onChangeText, isDeleteMode}) => {
                 <TextInput
                     title="Name:"
                     value={project.name} 
-                    style={styles.display}
-                    placeholder="You are in delete mode"/>
+                    style={styles.deleteData}
+                    placeholder="You are in delete mode"
+                    editable={false}/>
                 <TextInput
                     title="Due Date:"
                     value={project.due_date} 
-                    style={styles.display}
-                    placeholder="You are in delete mode"/>
+                    style={styles.deleteData}
+                    placeholder="You are in delete mode"
+                    editable={false}/>
                 <TextInput
                     title="Comments:"
                     value={project.comments} 
-                    style={styles.display}
-                    placeholder="You are in delete mode"/>
+                    style={styles.deleteData}
+                    placeholder="You are in delete mode"
+                    editable={false}/>
                 <TextInput
                     title="Id:"
                     value={project.id} 
-                    style={styles.display}
-                    placeholder="You are in delete mode"/>
+                    style={styles.deleteData}
+                    placeholder="You are in delete mode"
+                    editable={false}/>
             </View>
         )
     } else {
@@ -41,6 +46,7 @@ const DisplayGroup = ({project, onChangeText, isDeleteMode}) => {
 }
 
 const ProjectDelete = () =>{
+    const colorScheme = useColorScheme()
     const {id, name, due_date, comments} = useLocalSearchParams()
     const [deleteMode, setDeleteMode] = useState(true)
     const [form, setForm] = useState({
@@ -119,6 +125,7 @@ const ProjectDelete = () =>{
     return (
         <View style={styles.container}>
             <DisplayGroup
+                styles = {colorScheme === 'dark' ? globalStylesDark : globalStylesLight}
                 project={form}
                 // onChangeText={(text)=> setForm({ ...form, name: text})}
                 // onChangeText={onChangeTextArray}
@@ -164,6 +171,7 @@ const styles = StyleSheet.create({
         padding: '1px',
         flexDirection: 'row',
         maxWidth: '90%',
+        justifyContent: 'center'
     },
     buttonText: {
         color: 'lightblue',
@@ -173,5 +181,6 @@ const styles = StyleSheet.create({
         marginBottom: "20px",
         fontSize: 24,
         color: 'royalblue',
+        textAlign: 'center',
     },
 });

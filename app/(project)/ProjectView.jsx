@@ -5,23 +5,23 @@ import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "reac
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import StatusDropdown from '../../components/StatusDropdown'
-import { globalStylesLight } from '../../styles/globalStyles';
+import { globalStylesDark, globalStylesLight } from '../../styles/globalStyles';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
 const DisplayGroup = ({project, onChangeText, isEditMode, styles}) => {
     if (isEditMode){
         return(  
-                <View>
+                <View >
                     <Text style={styles.title}>Edit Mode Project</Text>
                     <TextInput
                         title="Name:"
-                        style={styles.editData}
+                        style={[styles.editContainer,styles.editData]}
                         value={project.name}
                         onChangeText={onChangeText[0]}
                     />
                     <StatusDropdown 
-                        viewStyle={styles.editData}
+                        viewStyle={styles.editContainer}
                         textStyle={styles.editData}
                         type= 'Status'
                         input={project.status}
@@ -36,13 +36,13 @@ const DisplayGroup = ({project, onChangeText, isEditMode, styles}) => {
                     /> */}
                     <TextInput
                         title="DueDate:"
-                        style={styles.editData}
+                        style={[styles.editContainer,styles.editData]}
                         value={project.due_date}
                         onChangeText={onChangeText[2]}
                     />
                     <TextInput
                         title="Comments:"
-                        style={styles.editData}
+                        style={[styles.editContainer,styles.editData]}
                         value={project.comments}
                         onChangeText={onChangeText[3]}
                     />
@@ -168,6 +168,7 @@ const PropertyView = () =>{
                 throw new Error('status must be "open" or "closed"')
             }
             
+            const newId = form.id
             const newName = form.name
             const newStatus = form.status
             const newDueDate = form.due_date
@@ -184,7 +185,7 @@ const PropertyView = () =>{
                 due_date: newDueDate,
                 status: newStatus,
                 comments: newComments,
-                // id: keyId
+                id: newId
             })
         } catch(error){
             console.error(error);
@@ -231,7 +232,7 @@ const PropertyView = () =>{
                 // onChangeText={(text)=> setForm({ ...form, name: text})}
                 onChangeText={onChangeTextArray}
                 isEditMode={editMode}
-                styles={colorScheme === 'dark' ? stylesDark: globalStylesLight}
+                styles={colorScheme === 'dark' ? globalStylesDark: globalStylesLight}
             />
             <ButtonGroup/>        
         </ThemedView>

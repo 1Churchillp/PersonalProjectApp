@@ -42,7 +42,7 @@ const AddProjectForm =() => {
         
             await db.runAsync(
                 'INSERT INTO projects (name, due_date, comments, status) VALUES (?,?,?,?)',
-                [form.name, form.due_date, form.comments, 'active']
+                [form.name, form.due_date, form.comments, 'open']
             );
 
             Alert.alert('Success', 'Project added successfully!');

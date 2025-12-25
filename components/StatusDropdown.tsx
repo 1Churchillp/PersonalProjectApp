@@ -42,12 +42,16 @@ export function StatusDropdown ({
   }
 
   return (
-      <View style={styles.container}>
+      <View >
         {/* <Text style={styles.label}>Select an Option: {valueIn} </Text> */}
         <Dropdown
           style={viewStyle}
-          placeholderStyle={styles.placeholderStyle}
-          selectedTextStyle={styles.selectedTextStyle}
+          // containerStyle={viewStyle}
+          // itemTextStyle={[textStyle, {color: 'black'}]}
+          // placeholderStyle={styles.placeholderStyle}
+          // selectedTextStyle={styles.selectedTextStyle}
+          placeholderStyle={textStyle}
+          selectedTextStyle={textStyle}
           // data={data}
           data={type == 'Status' ? status : data}
           labelField="label"
@@ -67,7 +71,7 @@ export function StatusDropdown ({
 const styles = StyleSheet.create({
   container: {
     padding: 0,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
   },
   dropdown: {
         height: 40,
