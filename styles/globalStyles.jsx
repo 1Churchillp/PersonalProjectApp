@@ -107,7 +107,7 @@ export const globalStylesLight = StyleSheet.create({
         height: 40,
         borderColor: 'black',
         borderWidth: 1,
-        marginBottom: 10,
+        marginTop: 5,
         paddingHorizontal: 10,
         fontSize: 24,
         borderRadius: 5,
@@ -160,26 +160,24 @@ export const globalStylesDark = StyleSheet.create({
         borderRadius: 5,
         borderColor: 'white',
         borderWidth: 1,
-        backgroundColor: 'black'
+        backgroundColor: 'black',
+        marginBottom: 5,
+
     },
     editData:{
         height: 40,
-        
         color: 'white',
-        
-        marginBottom: 10,
+        marginTop: 5,
+        // marginBottom: 5,
         paddingHorizontal: 10,
         fontSize: 24,
         
     },
     deleteData:{
         height: 40,
-        
         color: 'white',
-        
         marginBottom: 10,
         paddingHorizontal: 10,
-        fontSize: 24,
-        
+        fontSize: 24, 
     }
 });;

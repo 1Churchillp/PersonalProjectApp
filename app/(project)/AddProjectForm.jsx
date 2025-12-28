@@ -8,53 +8,69 @@ import DateDisplay from '../../components/DateDisplay'
 import DatePressable from '../../components/DatePressable';
 import CustomPressable from '../../components/CustomPressable';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { globalStylesLight, globalStylesDark } from '../../styles/globalStyles';
 
 
 
 const AddProjectForm =() => {
   const colorScheme = useColorScheme();
+  const stylesForm = colorScheme === 'dark' ? globalStylesDark : globalStylesLight
   const [date, setDate] = useState(new Date());
-  const [showPicker, setShowPicker] = useState(false);
+  const [showFirstPicker, setShowFirstPicker] = useState(true);
+  const [showSecondPicker, setShowSecondPicker] = useState(false);
+  // const [showPicker, setShowPicker] = useState(true);
   const [form, setForm] = useState({
       name: '',
       due_date: date.toLocaleDateString(),
       comments: ''
   });
-    const onChange = (event, selectedDate) => {
-        const currentDate = selectedDate || date;
-        setShowPicker(false); // Hide picker on iOS after selection
-        setDate(currentDate);
-        setForm({ ...form, due_date: currentDate.toLocaleDateString()})
-    };
+  // const onChange = (event, selectedDate) => {
+  //     const currentDate = selectedDate || date;
+  //     setShowPicker(false); // Hide picker on iOS after selection
+  //     setDate(currentDate);
+  //     setForm({ ...form, due_date: currentDate.toLocaleDateString()})
+  // };
+  const changeFirstPicker = (event, selectedDate) => {
+    setShowFirstPicker(false);
+    setDate(selectedDate);
+    setForm({ ...form, due_date: selectedDate.toLocaleDateString()})
+    setShowSecondPicker(true);
+  }
 
-    const showDatePicker = () =>{ 
-        setShowPicker(true)
-    };
+  const changeSecondPicker = (event, selectedDate) => {
+      setShowSecondPicker(false);
+      setDate(selectedDate);
+      setForm({ ...form, due_date: selectedDate.toLocaleDateString()})
+      setShowFirstPicker(true);
+}
+  // const showDatePicker = () =>{ 
+  //     setShowPicker(true)
+  // };
 
-    const db= useSQLiteContext();
+  const db= useSQLiteContext();
 
-    const handleSubmit = async () => {
-        try {
-            //validate form data
-            if(!form.name || !form.comments){
-                throw new Error('All fields are requried');
-            }
-        
-            await db.runAsync(
-                'INSERT INTO projects (name, due_date, comments, status) VALUES (?,?,?,?)',
-                [form.name, form.due_date, form.comments, 'open']
-            );
+  const handleSubmit = async () => {
+      try {
+          //validate form data
+          if(!form.name || !form.comments){
+              throw new Error('All fields are requried');
+          }
+      
+          await db.runAsync(
+              'INSERT INTO projects (name, due_date, comments, status) VALUES (?,?,?,?)',
+              [form.name, form.due_date, form.comments, 'open']
+          );
 
-            Alert.alert('Success', 'Project added successfully!');
-            setForm({
-                name: '',
-                due_date: '',
-                comments: ''
-            });
-        } catch(error){
-            console.error(error);
-            Alert.alert('Error', error.message || 'An error occuuued while adding the project.');
-        }
+          Alert.alert('Success', 'Project added successfully!');
+          setForm({
+              name: '',
+              due_date: '',
+              comments: ''
+          });
+      } catch(error){
+          console.error(error);
+          Alert.alert('Error', error.message || 'An error occuuued while adding the project.');
+      }
     };
 
 
@@ -62,20 +78,51 @@ const AddProjectForm =() => {
    
     <View>        
         <TextInput
-            style={colorScheme === 'dark' ? stylesDark.input : stylesLight.input}
+            style={[stylesForm.editContainer,stylesForm.editData]}
             placeholder="Name"
             value={form.name}
             onChangeText={(text)=> setForm({ ...form, name: text})}
         />
         <View >
-          {showPicker ? (
-            <View style={styles.sideContainer}>
+          {showFirstPicker && (
+              <View style={stylesForm.rowContainer}>
+                <View>
+                  <Text style={stylesForm.label}>Due Date:</Text>
+                </View>
+                <DateTimePicker
+                    style={[stylesForm.editContainer,stylesForm.editData]}
+                    value={date}
+                    mode="date"
+                    is24Hour={true}
+                    display="default"
+                    onChange={changeFirstPicker}
+                />     
+              </View> 
+          )}
+                          
+          {showSecondPicker && (
+            <View style={stylesForm.rowContainer}>
               <View>
-                <Text style={colorScheme === 'dark' ? stylesDark.label : stylesLight.label}>Due Date:</Text>
+                <Text style={stylesForm.label}>Due Date:</Text>
+              </View>
+              <DateTimePicker
+                  style={[stylesForm.editContainer,stylesForm.editData]}
+                  value={date}
+                  mode="date"
+                  is24Hour={true}
+                  display="default"
+                  onChange={changeSecondPicker}
+              />
+            </View> 
+          )}
+          {/* {showPicker ? (
+            <View style={stylesForm.rowContainer}>
+              <View>
+                <Text style={stylesForm.label}>Due Date:</Text>
               </View>
               <View>
                 <DateTimePicker
-                  style={colorScheme === 'dark' ? stylesDark.input : stylesLight.input}
+                  style={[stylesForm.editContainer,stylesForm.editData]}
                   testID="dateTimePicker"
                   value={date}
                   mode="date" // Can be 'date', 'time', or 'datetime'
@@ -86,24 +133,43 @@ const AddProjectForm =() => {
               </View>
             </View>  
             ):(
-            <View style={styles.sideContainer}>
+            <View style={stylesForm.rowContainer}>
               <View>
-                <Text style={colorScheme === 'dark' ? stylesDark.label : stylesLight.label}>Due Date:</Text>
+                <Text style={stylesForm.label}>Due Date:</Text>
               </View>
               <View>
                 <DateDisplay 
-                  style={colorScheme === 'dark' ? stylesDark.date : stylesLight.date}
+                  style={stylesForm.editContainer}
+                  textStyle ={stylesForm.editData}
                   onPress={showDatePicker}
                   date={date.toLocaleDateString()}>
                 </DateDisplay>
               </View>
             </View>
-          )}
+          )} */}
+
+            {/* <View style={stylesForm.rowContainer}>
+              <View>
+                <Text style={stylesForm.label}>Due Date:</Text>
+              </View>
+              <View>
+                <DateTimePicker
+                  style={[stylesForm.editContainer,stylesForm.editData]}
+                  testID="dateTimePicker"
+                  value={date}
+                  mode="date" // Can be 'date', 'time', or 'datetime'
+                  display="default" // On Android, 'default' or 'spinner'. On iOS, 'default' or 'spinner'
+                  onChange={onChange}
+                  open={true}
+                />
+              </View>
+            </View>   */}
+
           {/* < Button onPress={showDatePicker} title="Tap to Change Due Date" /> */}
         </View>
 
         <TextInput
-            style={colorScheme === 'dark' ? stylesDark.input : stylesLight.input}
+            style={[stylesForm.editContainer,stylesForm.editData]}
             placeholder="Comments"
             value={form.comments}
             onChangeText={(text)=> setForm({ ...form, comments: text})}
