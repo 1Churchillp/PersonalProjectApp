@@ -76,9 +76,9 @@ const AddProjectForm =() => {
 
   return (
    
-    <View>        
+    <View style={styles.container}>        
         <TextInput
-            style={[stylesForm.editContainer,stylesForm.editData]}
+            style={[stylesForm.editContainer,stylesForm.editData, stylesForm.rowContainer]}
             placeholder="Name"
             value={form.name}
             onChangeText={(text)=> setForm({ ...form, name: text})}
@@ -91,6 +91,7 @@ const AddProjectForm =() => {
                 </View>
                 <DateTimePicker
                     style={[stylesForm.editContainer,stylesForm.editData]}
+                    textStyle ={stylesForm.editData}
                     value={date}
                     mode="date"
                     is24Hour={true}
@@ -106,7 +107,8 @@ const AddProjectForm =() => {
                 <Text style={stylesForm.label}>Due Date:</Text>
               </View>
               <DateTimePicker
-                  style={[stylesForm.editContainer,stylesForm.editData]}
+                  style={[stylesForm.editDateContainer,stylesForm.editDate]}
+                  textStyle ={stylesForm.editDate}
                   value={date}
                   mode="date"
                   is24Hour={true}
@@ -165,11 +167,10 @@ const AddProjectForm =() => {
               </View>
             </View>   */}
 
-          {/* < Button onPress={showDatePicker} title="Tap to Change Due Date" /> */}
         </View>
 
         <TextInput
-            style={[stylesForm.editContainer,stylesForm.editData]}
+            style={[stylesForm.editContainer,stylesForm.editData, stylesForm.rowContainer]}
             placeholder="Comments"
             value={form.comments}
             onChangeText={(text)=> setForm({ ...form, comments: text})}
@@ -185,126 +186,131 @@ const AddProjectForm =() => {
 }
 
 const styles = StyleSheet.create({
-    input: {
-        height: 80,
-        borderColor: '#fff',
-        borderWidth: 1,
-        marginBottom: 10,
-        paddingHorizontal: 10,
-        fontSize: 36
-    },
-    sideContainer: {
-        flexDirection: 'row', // Arranges children horizontally
-        justifyContent: 'flex-start', // Left Justify
-        alignItems: 'center', // Aligns items vertically in the center
-        padding: 0,
-        maxWidth: '90%',
-      },
+  container: {
+    // width: '90%',
+    flexDirection: 'column',
+    alignItems: 'center',
+  }
+  // input: {
+    //     height: 80,
+    //     borderColor: '#fff',
+    //     borderWidth: 1,
+    //     marginBottom: 10,
+    //     paddingHorizontal: 10,
+    //     fontSize: 36
+    // },
+    // sideContainer: {
+    //     flexDirection: 'row', // Arranges children horizontally
+    //     justifyContent: 'flex-start', // Left Justify
+    //     alignItems: 'center', // Aligns items vertically in the center
+    //     padding: 0,
+    //     maxWidth: '90%',
+    //   },
 
-  addButton: {
-    backgroundColor: 'pink',
-    borderRadius: 5,
-    padding: 10,
-  },
-  addButtonText: {
-    fontSize: 18,
-    color: 'black',
-  },
+  // addButton: {
+  //   backgroundColor: 'pink',
+  //   borderRadius: 5,
+  //   padding: 10,
+  // },
+  // addButtonText: {
+  //   fontSize: 18,
+  //   color: 'black',
+  // },
 });
 
-const stylesLight = StyleSheet.create({
-    label: {
-        height: 40,
-        borderColor: 'black',
-        borderWidth: 0,
-        marginBottom: 10,
-        paddingHorizontal: 10,
-        color: 'black',
-        fontSize: 30
-    },
-    date: {
-        height: 40,
-        borderColor: 'black',
-        borderWidth: 1,
-        marginBottom: 10,
-        paddingHorizontal: 10,
-        color: 'black',
-        fontSize: 30
-    },
-    input: {
-        height: 40,
-        borderColor: 'black',
-        borderWidth: 1,
-        marginBottom: 10,
-        paddingHorizontal: 10,
-        color: 'black',
-        fontSize: 30
+// const stylesLight = StyleSheet.create({
+//     label: {
+//         height: 40,
+//         borderColor: 'black',
+//         borderWidth: 0,
+//         marginBottom: 10,
+//         paddingHorizontal: 10,
+//         color: 'black',
+//         fontSize: 30
+//     },
+//     date: {
+//         height: 40,
+//         borderColor: 'black',
+//         borderWidth: 1,
+//         marginBottom: 10,
+//         paddingHorizontal: 10,
+//         color: 'black',
+//         fontSize: 30
+//     },
+//     input: {
+//         height: 40,
+//         borderColor: 'black',
+//         borderWidth: 1,
+//         marginBottom: 10,
+//         paddingHorizontal: 10,
+//         color: 'black',
+//         fontSize: 30
 
-    },
-    sideContainer: {
-        flexDirection: 'row', // Arranges children horizontally
-        justifyContent: 'space-around', // Distributes space between items
-        alignItems: 'center', // Aligns items vertically in the center
-        padding: 10,
-      },
+//     },
+//     sideContainer: {
+//         flexDirection: 'row', // Arranges children horizontally
+//         justifyContent: 'space-around', // Distributes space between items
+//         alignItems: 'center', // Aligns items vertically in the center
+//         padding: 10,
+//       },
 
-  addButton: {
-    backgroundColor: 'pink',
-    borderRadius: 5,
-    padding: 10,
-  },
-  addButtonText: {
-    fontSize: 18,
-    color: 'black',
-  },
-});
+//   addButton: {
+//     backgroundColor: 'pink',
+//     borderRadius: 5,
+//     padding: 10,
+//   },
+//   addButtonText: {
+//     fontSize: 18,
+//     color: 'black',
+//   },
+// });
 
-const stylesDark = StyleSheet.create({
-    date: {
-        height: 40,
-        borderColor: '#fff',
-        borderWidth: 1,
-        marginBottom: 10,
-        paddingHorizontal: 10,
-        color: 'white',
-        fontSize: 30
+// const stylesDark = StyleSheet.create({
+//     date: {
+//         height: 40,
+//         borderColor: '#fff',
+//         borderWidth: 1,
+//         marginBottom: 10,
+//         paddingHorizontal: 10,
+//         color: 'white',
+//         fontSize: 30
 
-    },
-    label: {
-        height: 40,
-        borderColor: '#fff',
-        borderWidth: 0,
-        marginBottom: 10,
-        paddingHorizontal: 10,
-        color: 'white',
-        fontSize: 30
+//     },
+//     label: {
+//         height: 40,
+//         borderColor: '#fff',
+//         borderWidth: 0,
+//         marginBottom: 10,
+//         paddingHorizontal: 10,
+//         color: 'white',
+//         fontSize: 30
 
-    },
-    input: {
-        height: 40,
-        borderColor: '#fff',
-        borderWidth: 1,
-        marginBottom: 10,
-        paddingHorizontal: 10,
-        color: 'white',
-        fontSize: 30
+//     },
+//     input: {
+//         height: 40,
+//         borderColor: '#fff',
+//         borderWidth: 1,
+//         marginBottom: 10,
+//         paddingHorizontal: 10,
+//         color: 'white',
+//         fontSize: 30
 
-    },
-    sideContainer: {
-        flexDirection: 'row', // Arranges children horizontally
-        justifyContent: 'space-around', // Distributes space between items
-        alignItems: 'center', // Aligns items vertically in the center
-        padding: 10,
-      },
+//     },
+//     sideContainer: {
+//         flexDirection: 'row', // Arranges children horizontally
+//         justifyContent: 'space-around', // Distributes space between items
+//         alignItems: 'center', // Aligns items vertically in the center
+//         padding: 10,
+//       },
 
-  addButton: {
-    backgroundColor: 'pink',
-    borderRadius: 5,
-    padding: 10,
-  },
-  addButtonText: {
-    fontSize: 18,
-    color: 'black',
-  },
-});
+//   addButton: {
+//     backgroundColor: 'pink',
+//     borderRadius: 5,
+//     padding: 10,
+//   },
+//   addButtonText: {
+//     fontSize: 18,
+//     color: 'black',
+//   },
+// });
 export default AddProjectForm;

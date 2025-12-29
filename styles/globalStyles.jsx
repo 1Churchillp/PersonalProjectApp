@@ -125,7 +125,7 @@ export const globalStylesDark = StyleSheet.create({
     rowContainer:{
         padding: '1px',
         flexDirection: 'row',
-        maxWidth: '90%',
+        minWidth: '90%',
     },
     title: {
         textAlign: 'center',
@@ -170,8 +170,23 @@ export const globalStylesDark = StyleSheet.create({
         marginTop: 5,
         // marginBottom: 5,
         paddingHorizontal: 10,
-        fontSize: 24,
-        
+        fontSize: 24,        
+    },
+    editDateContainer:{
+        borderRadius: 5,
+        borderColor: 'white',
+        borderWidth: 1,
+        backgroundColor: 'black',
+        marginBottom: 5,
+
+    },
+    editDate:{
+        height: 40,
+        color: 'black',
+        marginTop: 5,
+        // marginBottom: 5,
+        paddingHorizontal: 10,
+        fontSize: 24,        
     },
     deleteData:{
         height: 40,
@@ -180,4 +195,5 @@ export const globalStylesDark = StyleSheet.create({
         paddingHorizontal: 10,
         fontSize: 24, 
     }
+
 });;
