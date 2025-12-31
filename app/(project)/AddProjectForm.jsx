@@ -117,56 +117,6 @@ const AddProjectForm =() => {
               />
             </View> 
           )}
-          {/* {showPicker ? (
-            <View style={stylesForm.rowContainer}>
-              <View>
-                <Text style={stylesForm.label}>Due Date:</Text>
-              </View>
-              <View>
-                <DateTimePicker
-                  style={[stylesForm.editContainer,stylesForm.editData]}
-                  testID="dateTimePicker"
-                  value={date}
-                  mode="date" // Can be 'date', 'time', or 'datetime'
-                  display="default" // On Android, 'default' or 'spinner'. On iOS, 'default' or 'spinner'
-                  onChange={onChange}
-                  open={true}
-                />
-              </View>
-            </View>  
-            ):(
-            <View style={stylesForm.rowContainer}>
-              <View>
-                <Text style={stylesForm.label}>Due Date:</Text>
-              </View>
-              <View>
-                <DateDisplay 
-                  style={stylesForm.editContainer}
-                  textStyle ={stylesForm.editData}
-                  onPress={showDatePicker}
-                  date={date.toLocaleDateString()}>
-                </DateDisplay>
-              </View>
-            </View>
-          )} */}
-
-            {/* <View style={stylesForm.rowContainer}>
-              <View>
-                <Text style={stylesForm.label}>Due Date:</Text>
-              </View>
-              <View>
-                <DateTimePicker
-                  style={[stylesForm.editContainer,stylesForm.editData]}
-                  testID="dateTimePicker"
-                  value={date}
-                  mode="date" // Can be 'date', 'time', or 'datetime'
-                  display="default" // On Android, 'default' or 'spinner'. On iOS, 'default' or 'spinner'
-                  onChange={onChange}
-                  open={true}
-                />
-              </View>
-            </View>   */}
-
         </View>
 
         <TextInput
