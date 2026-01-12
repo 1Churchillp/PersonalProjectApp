@@ -6,14 +6,18 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import StatusDropdown from '../../components/StatusDropdown'
 import { globalStylesDark, globalStylesLight } from '../../styles/globalStyles';
+import DateTimePicker from '@react-native-community/datetimepicker';
+
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
-const DisplayGroup = ({project, onChangeText, isEditMode, styles}) => {
+const DisplayGroup = ({project, onChangeText, isEditMode, date, showFirstPicker, showSecondPicker, changeFirstPicker, changeSecondPicker, styles}) => {
     if (isEditMode){
         return(  
                 <View >
                     <Text style={styles.title}>Edit Mode Project</Text>
+
+
                     <TextInput
                         title="Name:"
                         style={[styles.editContainer,styles.editData]}
@@ -40,6 +44,43 @@ const DisplayGroup = ({project, onChangeText, isEditMode, styles}) => {
                         value={project.due_date}
                         onChangeText={onChangeText[2]}
                     />
+
+                <View >
+                    {showFirstPicker && (
+                        <View style={styles.rowContainer}>
+                            <View>
+                            <Text style={styles.label}>Due Date:</Text>
+                            </View>
+                            <DateTimePicker
+                                style={[styles.editContainer,styles.editData]}
+                                textStyle ={styles.editData}
+                                value={date}
+                                mode="date"
+                                is24Hour={true}
+                                display="default"
+                                onChange={changeFirstPicker}
+                            />     
+                        </View> 
+                    )}
+                                    
+                    {showSecondPicker && (
+                        <View style={styles.rowContainer}>
+                        <View>
+                            <Text style={styles.label}>Due Date:</Text>
+                        </View>
+                        <DateTimePicker
+                            style={[styles.editDateContainer,styles.editDate]}
+                            textStyle ={styles.editDate}
+                            value={date}
+                            mode="date"
+                            is24Hour={true}
+                            display="default"
+                            onChange={changeSecondPicker}
+                        />
+                        </View> 
+                    )}
+                </View>
+
                     <TextInput
                         title="Comments:"
                         style={[styles.editContainer,styles.editData]}
@@ -135,6 +176,10 @@ const DisplayGroup = ({project, onChangeText, isEditMode, styles}) => {
 
 const PropertyView = () =>{
     const colorScheme = useColorScheme()
+    
+    const [showFirstPicker, setShowFirstPicker] = useState(true);
+    const [showSecondPicker, setShowSecondPicker] = useState(false);
+    
     const {id, name, status, due_date, comments} = useLocalSearchParams()
     const [editMode, setEditMode] = useState(false)
     const [form, setForm] = useState({
@@ -144,7 +189,21 @@ const PropertyView = () =>{
         due_date: due_date,
         comments: comments
     })
+    const [date, setDate] = useState((new Date(due_date)));
 
+    const changeFirstPicker = (event, selectedDate) => {
+        setShowFirstPicker(false);
+        setDate(selectedDate);
+        setForm({ ...form, due_date: selectedDate.toLocaleDateString()})
+        setShowSecondPicker(true);
+    }
+
+    const changeSecondPicker = (event, selectedDate) => {
+        setShowSecondPicker(false);
+        setDate(selectedDate);
+        setForm({ ...form, due_date: selectedDate.toLocaleDateString()})
+        setShowFirstPicker(true);
+    }
     const db = useSQLiteContext()
 
     const onChangeTextArray = [
@@ -232,6 +291,12 @@ const PropertyView = () =>{
                 // onChangeText={(text)=> setForm({ ...form, name: text})}
                 onChangeText={onChangeTextArray}
                 isEditMode={editMode}
+                date={date}
+                showFirstPicker={showFirstPicker}
+                showSecondPicker={showSecondPicker}
+                onChangeFirstPicker={changeFirstPicker}
+                onChangeSecondPicker={changeSecondPicker}
+
                 styles={colorScheme === 'dark' ? globalStylesDark: globalStylesLight}
             />
             <ButtonGroup/>        

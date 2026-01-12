@@ -42,7 +42,7 @@ const AddProjectForm =() => {
       setDate(selectedDate);
       setForm({ ...form, due_date: selectedDate.toLocaleDateString()})
       setShowFirstPicker(true);
-}
+  }
   // const showDatePicker = () =>{ 
   //     setShowPicker(true)
   // };
@@ -141,126 +141,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
   }
-  // input: {
-    //     height: 80,
-    //     borderColor: '#fff',
-    //     borderWidth: 1,
-    //     marginBottom: 10,
-    //     paddingHorizontal: 10,
-    //     fontSize: 36
-    // },
-    // sideContainer: {
-    //     flexDirection: 'row', // Arranges children horizontally
-    //     justifyContent: 'flex-start', // Left Justify
-    //     alignItems: 'center', // Aligns items vertically in the center
-    //     padding: 0,
-    //     maxWidth: '90%',
-    //   },
-
-  // addButton: {
-  //   backgroundColor: 'pink',
-  //   borderRadius: 5,
-  //   padding: 10,
-  // },
-  // addButtonText: {
-  //   fontSize: 18,
-  //   color: 'black',
-  // },
 });
 
-// const stylesLight = StyleSheet.create({
-//     label: {
-//         height: 40,
-//         borderColor: 'black',
-//         borderWidth: 0,
-//         marginBottom: 10,
-//         paddingHorizontal: 10,
-//         color: 'black',
-//         fontSize: 30
-//     },
-//     date: {
-//         height: 40,
-//         borderColor: 'black',
-//         borderWidth: 1,
-//         marginBottom: 10,
-//         paddingHorizontal: 10,
-//         color: 'black',
-//         fontSize: 30
-//     },
-//     input: {
-//         height: 40,
-//         borderColor: 'black',
-//         borderWidth: 1,
-//         marginBottom: 10,
-//         paddingHorizontal: 10,
-//         color: 'black',
-//         fontSize: 30
-
-//     },
-//     sideContainer: {
-//         flexDirection: 'row', // Arranges children horizontally
-//         justifyContent: 'space-around', // Distributes space between items
-//         alignItems: 'center', // Aligns items vertically in the center
-//         padding: 10,
-//       },
-
-//   addButton: {
-//     backgroundColor: 'pink',
-//     borderRadius: 5,
-//     padding: 10,
-//   },
-//   addButtonText: {
-//     fontSize: 18,
-//     color: 'black',
-//   },
-// });
-
-// const stylesDark = StyleSheet.create({
-//     date: {
-//         height: 40,
-//         borderColor: '#fff',
-//         borderWidth: 1,
-//         marginBottom: 10,
-//         paddingHorizontal: 10,
-//         color: 'white',
-//         fontSize: 30
-
-//     },
-//     label: {
-//         height: 40,
-//         borderColor: '#fff',
-//         borderWidth: 0,
-//         marginBottom: 10,
-//         paddingHorizontal: 10,
-//         color: 'white',
-//         fontSize: 30
-
-//     },
-//     input: {
-//         height: 40,
-//         borderColor: '#fff',
-//         borderWidth: 1,
-//         marginBottom: 10,
-//         paddingHorizontal: 10,
-//         color: 'white',
-//         fontSize: 30
-
-//     },
-//     sideContainer: {
-//         flexDirection: 'row', // Arranges children horizontally
-//         justifyContent: 'space-around', // Distributes space between items
-//         alignItems: 'center', // Aligns items vertically in the center
-//         padding: 10,
-//       },
-
-//   addButton: {
-//     backgroundColor: 'pink',
-//     borderRadius: 5,
-//     padding: 10,
-//   },
-//   addButtonText: {
-//     fontSize: 18,
-//     color: 'black',
-//   },
-// });
 export default AddProjectForm;
